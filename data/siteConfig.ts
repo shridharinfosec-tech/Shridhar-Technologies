@@ -29,7 +29,7 @@ export const siteConfig = {
     {
       label: "Head Office — Vadodara",
       address: headOfficeAddress,
-      mapsUrl: mapsSearchUrl(headOfficeAddress),
+      mapsUrl: "https://maps.app.goo.gl/EiPbXPFg3Cy2BPfP7",
     },
     {
       label: "Branch Office — Mumbai",
