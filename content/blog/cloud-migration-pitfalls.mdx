@@ -1,0 +1,52 @@
+export const metadata = {
+  title: "Five Cloud Migration Pitfalls We See Again and Again",
+  excerpt:
+    "The incidents that actually happen during a cloud migration are rarely the big architectural risks everyone worries about upfront.",
+  date: "2026-07-02",
+  tags: ["Cloud", "Migration", "Infrastructure"],
+  readingTime: "7 min read",
+};
+
+Ask a team what could go wrong during a cloud migration and you'll usually hear about architecture: will the database handle the new environment, will latency change, will the application scale differently. Those are worth planning for. They're also rarely what actually causes an incident.
+
+The failures we see in practice are smaller and more boring — which is exactly why they get missed.
+
+## 1. Forgotten cron jobs and scheduled tasks
+
+Every application older than a couple of years accumulates scheduled jobs nobody remembers writing: a nightly report, a cleanup script, a sync job someone set up for a client that left two years ago. Migration plans that focus on "the application" often miss these entirely, because they don't live in the main codebase and nobody thinks to inventory them.
+
+The fix is unglamorous: before migrating, list every cron job, scheduled Lambda, and background worker across every environment, not just what's in the primary repository. If you can't find where something is defined, treat that as a finding, not a formality.
+
+## 2. DNS propagation treated as instantaneous
+
+Teams plan cutover windows assuming DNS changes take effect immediately, then get surprised when a meaningful share of traffic keeps hitting the old environment for hours afterward. TTLs that were fine for years suddenly matter a lot on migration day.
+
+Lower your DNS TTLs well before the cutover window — days before, not hours — so the actual cutover propagates quickly when it counts. This is a five-minute change that gets skipped constantly because it doesn't feel urgent until it's too late to matter.
+
+## 3. Data sync gaps during cutover
+
+If your migration involves any period where the old and new environments are both live — which is common for anything beyond a small application — you need a clear answer for what happens to writes that occur during that window. "We'll just do it during low traffic" is not a plan; it's a hope.
+
+The safer pattern is a defined cutover sequence: stop writes to the old system, verify the final sync, redirect traffic, and only then reopen writes on the new system. It costs you a short, clearly-communicated downtime window instead of a very hard-to-detect data gap discovered days later.
+
+## 4. Underestimating what "replatforming" actually touches
+
+Moving from a legacy host to modern managed services often gets scoped as "move the app," when what's really happening is a rewrite of everything around the app: how logs are collected, how secrets are managed, how deployments happen, how alerts fire. Each of those is a small project on its own, and skipping the inventory step means discovering them one at a time, usually at the worst moment.
+
+<blockquote>
+The migrations that go smoothly are the ones where the unglamorous supporting infrastructure got the same planning attention as the application itself.
+</blockquote>
+
+## 5. No rollback path past a certain point
+
+Every migration plan should have an honest answer to "if this goes wrong two hours in, what do we do?" Teams often have a rollback plan for the first step of a migration and none at all for later steps, because by then everyone assumes it's too late to go back anyway.
+
+Define your point of no return explicitly, and make sure it's a deliberate decision made during planning — not a moment you arrive at by accident during a stressful cutover.
+
+## The pattern underneath all five
+
+None of these are exotic problems. They're all versions of the same thing: treating a migration as a technical event instead of an operational one, and under-investing in the inventory and sequencing work that has nothing to do with clever architecture.
+
+---
+
+If a migration is on your roadmap and you want a second set of eyes on the plan before cutover, that's the specific gap our [cloud migration services](/services/cloud/cloud-migration-services) are built to close.
