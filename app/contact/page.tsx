@@ -7,7 +7,7 @@ import Breadcrumb from "@/components/shared/Breadcrumb";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Shridhar Technologies — offices in Vadodara, Mumbai, and Ahmedabad.",
+    "Get in touch with Shridhar Technologies - offices in Vadodara, Mumbai, and Ahmedabad.",
 };
 
 export default function ContactPage() {

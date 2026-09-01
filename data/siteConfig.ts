@@ -27,17 +27,17 @@ export const siteConfig = {
   sisUrl: "https://www.shridharinfosec.com",
   offices: [
     {
-      label: "Head Office — Vadodara",
+      label: "Head Office - Vadodara",
       address: headOfficeAddress,
       mapsUrl: "https://maps.app.goo.gl/EiPbXPFg3Cy2BPfP7",
     },
     {
-      label: "Branch Office — Mumbai",
+      label: "Branch Office - Mumbai",
       address: mumbaiAddress,
       mapsUrl: mapsSearchUrl(mumbaiAddress),
     },
     {
-      label: "Branch Office — Ahmedabad",
+      label: "Branch Office - Ahmedabad",
       address: ahmedabadAddress,
       mapsUrl: mapsSearchUrl(ahmedabadAddress),
     },

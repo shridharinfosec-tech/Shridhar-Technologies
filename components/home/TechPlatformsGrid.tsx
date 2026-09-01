@@ -13,7 +13,7 @@ export default function TechPlatformsGrid({ compact = false }: { compact?: boole
           Technology platforms
         </h2>
         <p className="mt-4 text-lg text-fog">
-          We build on a focused, proven stack — chosen for reliability and how
+          We build on a focused, proven stack - chosen for reliability and how
           easy it is to hire for, not novelty.
         </p>
       </div>

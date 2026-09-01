@@ -177,7 +177,7 @@ export default function ContactForm() {
         </p>
         {submitted && (
           <p role="status" className="mt-3 text-sm font-medium text-cyber">
-            Your email app should be opening now — if it doesn&apos;t, email us
+            Your email app should be opening now - if it doesn&apos;t, email us
             directly instead.
           </p>
         )}

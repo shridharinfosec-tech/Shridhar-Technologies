@@ -1,4 +1,4 @@
-// Placeholder case studies. Industry names are generic/anonymized — replace
+// Placeholder case studies. Industry names are generic/anonymized - replace
 // with real, named client work once available. isPlaceholder marks every
 // entry so it's easy to find and swap out later.
 export type CaseStudy = {
@@ -21,7 +21,7 @@ export const portfolio: CaseStudy[] = [
     problem:
       "A regional logistics network was coordinating dispatch, driver assignment, and delivery tracking across a patchwork of spreadsheets and phone calls, which made it impossible to onboard new depots without adding headcount.",
     solution:
-      "We built a multi-tenant dispatch platform — one deployment serving every depot with proper data isolation — covering live driver assignment, route tracking, and a customer-facing delivery status page, deployed on AWS with a PostgreSQL backend.",
+      "We built a multi-tenant dispatch platform - one deployment serving every depot with proper data isolation - covering live driver assignment, route tracking, and a customer-facing delivery status page, deployed on AWS with a PostgreSQL backend.",
     outcome:
       "New depots can now be onboarded in days instead of weeks, and dispatch staff report spending significantly less time on manual coordination.",
     isPlaceholder: true,
@@ -47,7 +47,7 @@ export const portfolio: CaseStudy[] = [
     problem:
       "A payments processor was running on aging, self-managed servers with rising hosting costs and no clear disaster recovery plan, which had become a recurring concern in enterprise sales conversations.",
     solution:
-      "We planned and executed a phased migration to AWS — containerizing services with Docker, moving to managed PostgreSQL, and building a documented disaster recovery runbook — with a staged cutover to avoid processing downtime.",
+      "We planned and executed a phased migration to AWS - containerizing services with Docker, moving to managed PostgreSQL, and building a documented disaster recovery runbook - with a staged cutover to avoid processing downtime.",
     outcome:
       "Infrastructure costs dropped meaningfully post-migration, and the documented DR plan has since been used successfully in enterprise security reviews.",
     isPlaceholder: true,

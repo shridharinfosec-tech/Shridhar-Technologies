@@ -112,7 +112,7 @@ export default function Footer() {
           <Logo onDeep />
         </div>
 
-        {/* Offices — full addresses */}
+        {/* Offices - full addresses */}
         <div className="mt-12 grid gap-10 sm:grid-cols-3">
           {siteConfig.offices.map((office) => (
             <div key={office.label} className="flex flex-col items-center">

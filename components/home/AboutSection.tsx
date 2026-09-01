@@ -16,7 +16,7 @@ const features = [
   {
     title: "End-to-End Delivery",
     description:
-      "From first idea to production — and the years of support that follow.",
+      "From first idea to production - and the years of support that follow.",
     icon: (
       <>
         <circle
@@ -44,7 +44,7 @@ export default function AboutSection() {
     <section className="bg-ink">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          {/* Left — content */}
+          {/* Left - content */}
           <div>
             <Eyebrow>About Company</Eyebrow>
             <h2 className="font-display mt-4 text-3xl leading-tight font-extrabold text-snow sm:text-4xl">
@@ -82,33 +82,33 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Right — overlapping image collage */}
+          {/* Right - overlapping image collage */}
           <div>
-            <div className="relative mx-auto hidden h-[520px] w-full max-w-xl md:block">
+            <div className="relative mx-auto hidden h-[560px] w-full max-w-xl md:block">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/meeting.jpg"
                 alt="The team collaborating in the studio"
-                className="absolute top-0 left-0 h-[64%] w-[68%] rounded-xl object-cover shadow-2xl ring-1 ring-black/5"
+                className="absolute top-0 left-0 h-[56%] w-[62%] rounded-xl object-cover shadow-2xl ring-1 ring-black/5"
                 loading="lazy"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/team.jpg"
                 alt="Engineers reviewing work together"
-                className="absolute top-[24%] right-0 h-[40%] w-[42%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
+                className="absolute top-[20%] right-0 h-[34%] w-[38%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
                 loading="lazy"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/office.jpg"
                 alt="Inside our workspace"
-                className="absolute bottom-0 left-[34%] h-[42%] w-[44%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
+                className="absolute right-[6%] bottom-0 h-[44%] w-[50%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
                 loading="lazy"
               />
             </div>
 
-            {/* Mobile fallback — simple stack */}
+            {/* Mobile fallback - simple stack */}
             <div className="grid gap-4 md:hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

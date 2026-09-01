@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="mt-8 space-y-5 text-lg leading-relaxed text-fog">
           <p>
             Shridhar Technologies is the software engineering half of the
-            Shridhar group — sister brand of{" "}
+            Shridhar group - sister brand of{" "}
             <a
               href={siteConfig.sisUrl}
               target="_blank"
@@ -43,7 +43,7 @@ export default function AboutPage() {
             We work with founders shipping a first product, and with
             established companies modernizing systems that have outgrown
             their original architecture. What connects those engagements
-            isn&apos;t the size of the client — it&apos;s a consistent
+            isn&apos;t the size of the client - it&apos;s a consistent
             standard for how we scope work, communicate progress, and hand
             off what we build.
           </p>
@@ -97,7 +97,7 @@ export default function AboutPage() {
           Leadership
         </h2>
         <p className="mt-2 text-sm text-mist">
-          Named profiles coming soon — roles below reflect the current team
+          Named profiles coming soon - roles below reflect the current team
           structure.
         </p>
         <div className="mt-8 grid gap-6 sm:grid-cols-3">

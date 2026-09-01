@@ -22,7 +22,7 @@ export const values: Value[] = [
   {
     title: "Commitment to Client Success",
     description:
-      "A project isn't done when it ships — it's done when it's actually working for the business that asked for it.",
+      "A project isn't done when it ships - it's done when it's actually working for the business that asked for it.",
   },
 ];
 

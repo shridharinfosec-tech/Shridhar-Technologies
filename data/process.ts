@@ -12,7 +12,7 @@ export const processSteps: ProcessStep[] = [
   {
     title: "Design",
     description:
-      "Technical design and, where needed, UI/UX design — reviewed with you before a line of production code is written.",
+      "Technical design and, where needed, UI/UX design - reviewed with you before a line of production code is written.",
   },
   {
     title: "Build",

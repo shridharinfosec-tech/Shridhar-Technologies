@@ -22,7 +22,7 @@ export default function ServicesHubPage() {
           </h1>
           <p className="mt-4 text-lg text-fog">
             Five practice areas covering the full lifecycle of building and
-            running software — pick one, or combine a few for a single
+            running software - pick one, or combine a few for a single
             engagement.
           </p>
         </div>

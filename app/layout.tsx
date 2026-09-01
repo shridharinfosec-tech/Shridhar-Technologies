@@ -9,7 +9,7 @@ import { organizationJsonLd } from "@/lib/jsonld";
 import "./globals.css";
 
 // Montserrat carries the big hero headline, which is the LCP element on most
-// pages, so it preloads. Nunito Sans (body) is not preloaded — keeping it off
+// pages, so it preloads. Nunito Sans (body) is not preloaded - keeping it off
 // the critical path avoids bandwidth contention with the LCP heading font.
 // next/font's size-adjusted fallback keeps layout shift minimal on swap.
 const montserrat = Montserrat({
@@ -29,7 +29,7 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.baseUrl),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: `${siteConfig.name} - ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,

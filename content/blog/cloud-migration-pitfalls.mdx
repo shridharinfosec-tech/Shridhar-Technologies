@@ -9,7 +9,7 @@ export const metadata = {
 
 Ask a team what could go wrong during a cloud migration and you'll usually hear about architecture: will the database handle the new environment, will latency change, will the application scale differently. Those are worth planning for. They're also rarely what actually causes an incident.
 
-The failures we see in practice are smaller and more boring — which is exactly why they get missed.
+The failures we see in practice are smaller and more boring - which is exactly why they get missed.
 
 ## 1. Forgotten cron jobs and scheduled tasks
 
@@ -21,11 +21,11 @@ The fix is unglamorous: before migrating, list every cron job, scheduled Lambda,
 
 Teams plan cutover windows assuming DNS changes take effect immediately, then get surprised when a meaningful share of traffic keeps hitting the old environment for hours afterward. TTLs that were fine for years suddenly matter a lot on migration day.
 
-Lower your DNS TTLs well before the cutover window — days before, not hours — so the actual cutover propagates quickly when it counts. This is a five-minute change that gets skipped constantly because it doesn't feel urgent until it's too late to matter.
+Lower your DNS TTLs well before the cutover window - days before, not hours - so the actual cutover propagates quickly when it counts. This is a five-minute change that gets skipped constantly because it doesn't feel urgent until it's too late to matter.
 
 ## 3. Data sync gaps during cutover
 
-If your migration involves any period where the old and new environments are both live — which is common for anything beyond a small application — you need a clear answer for what happens to writes that occur during that window. "We'll just do it during low traffic" is not a plan; it's a hope.
+If your migration involves any period where the old and new environments are both live - which is common for anything beyond a small application - you need a clear answer for what happens to writes that occur during that window. "We'll just do it during low traffic" is not a plan; it's a hope.
 
 The safer pattern is a defined cutover sequence: stop writes to the old system, verify the final sync, redirect traffic, and only then reopen writes on the new system. It costs you a short, clearly-communicated downtime window instead of a very hard-to-detect data gap discovered days later.
 
@@ -41,7 +41,7 @@ The migrations that go smoothly are the ones where the unglamorous supporting in
 
 Every migration plan should have an honest answer to "if this goes wrong two hours in, what do we do?" Teams often have a rollback plan for the first step of a migration and none at all for later steps, because by then everyone assumes it's too late to go back anyway.
 
-Define your point of no return explicitly, and make sure it's a deliberate decision made during planning — not a moment you arrive at by accident during a stressful cutover.
+Define your point of no return explicitly, and make sure it's a deliberate decision made during planning - not a moment you arrive at by accident during a stressful cutover.
 
 ## The pattern underneath all five
 

@@ -50,7 +50,7 @@ export const legalPages: LegalPage[] = [
         heading: "Grievance Officer",
         body: [
           "In accordance with the Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023, the contact details of our Grievance Officer are provided below. If you have concerns about how your personal information has been handled, you may reach out using the details below and we will respond within the timeframe required by applicable law.",
-          "Grievance Officer — Shridhar Technologies, B-338, Emerald One, Jetalpur Road, Vadodara, Gujarat, India - 390007. Email: info@shridharinfosec.com | Phone: +91 932-866-7642.",
+          "Grievance Officer - Shridhar Technologies, B-338, Emerald One, Jetalpur Road, Vadodara, Gujarat, India - 390007. Email: info@shridharinfosec.com | Phone: +91 932-866-7642.",
         ],
       },
       {
@@ -125,7 +125,7 @@ export const legalPages: LegalPage[] = [
       {
         heading: "Intellectual Property",
         body: [
-          "All content on this website — including text, graphics, logos, images, layout, and design — is the property of Shridhar Technologies or its licensors. You may view and print pages from this website for personal, non-commercial use, provided you retain all copyright and proprietary notices. Commercial reproduction or redistribution requires our prior written authorization.",
+          "All content on this website - including text, graphics, logos, images, layout, and design - is the property of Shridhar Technologies or its licensors. You may view and print pages from this website for personal, non-commercial use, provided you retain all copyright and proprietary notices. Commercial reproduction or redistribution requires our prior written authorization.",
         ],
       },
       {
@@ -182,13 +182,13 @@ export const legalPages: LegalPage[] = [
       {
         heading: "Purpose & Scope",
         body: [
-          "This Data & Information Security Policy sets out how Shridhar Technologies (\"ST\") protects the confidentiality, integrity, and availability of information — both our own and that entrusted to us by our clients. It applies to all employees, contractors, systems, applications, and data assets across the organization.",
+          "This Data & Information Security Policy sets out how Shridhar Technologies (\"ST\") protects the confidentiality, integrity, and availability of information - both our own and that entrusted to us by our clients. It applies to all employees, contractors, systems, applications, and data assets across the organization.",
         ],
       },
       {
         heading: "Our Security Commitment",
         body: [
-          "We are committed to safeguarding information against unauthorized access, disclosure, modification, loss, or misuse. Security is not just a practice we apply to client engagements — it is a principle we live by internally, across every system we operate and every line of code we ship.",
+          "We are committed to safeguarding information against unauthorized access, disclosure, modification, loss, or misuse. Security is not just a practice we apply to client engagements - it is a principle we live by internally, across every system we operate and every line of code we ship.",
         ],
       },
       {

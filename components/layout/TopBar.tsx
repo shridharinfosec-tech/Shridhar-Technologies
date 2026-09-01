@@ -62,7 +62,7 @@ export default function TopBar() {
   return (
     <div className="hidden bg-[#141d38] md:block">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
-        {/* Social icons — boxed cells with hairline dividers (Engitech style). */}
+        {/* Social icons - boxed cells with hairline dividers (Engitech style). */}
         <ul className="flex items-center border-l border-white/20">
           {socials.map(({ label, href, Icon }) => (
             <li key={label}>

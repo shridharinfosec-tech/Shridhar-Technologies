@@ -19,7 +19,7 @@ These tasks share a property that matters more than people usually notice: even 
 
 ## Weak fit (for now): irreversible, high-stakes, ambiguous tasks
 
-Agents are not yet a good default for tasks where a mistake is expensive, hard to detect, or hard to undo — issuing refunds, modifying production infrastructure, or making judgment calls with legal or financial consequences. This isn't a permanent verdict on the technology; it's a statement about where the engineering discipline around guardrails, evaluation, and human oversight has actually matured enough to trust today.
+Agents are not yet a good default for tasks where a mistake is expensive, hard to detect, or hard to undo - issuing refunds, modifying production infrastructure, or making judgment calls with legal or financial consequences. This isn't a permanent verdict on the technology; it's a statement about where the engineering discipline around guardrails, evaluation, and human oversight has actually matured enough to trust today.
 
 Teams that skip this distinction and deploy agents against consequential systems without those guardrails are the ones generating the AI-agent horror stories that show up in the news.
 
@@ -28,12 +28,12 @@ Teams that skip this distinction and deploy agents against consequential systems
 Three things separate a production-ready agent from a demo, more than model choice does:
 
 1. **Scoped tool access.** An agent should only be able to call the specific functions or APIs it needs for its job, with parameters validated the same way you'd validate any external input. "The agent has access to our whole internal API" is a design smell, not a feature.
-2. **Human-in-the-loop checkpoints for anything consequential.** Not every step needs a human, but any step that's expensive to undo should pause for one — even if that adds latency. Speed isn't the point of an agent that's wrong.
+2. **Human-in-the-loop checkpoints for anything consequential.** Not every step needs a human, but any step that's expensive to undo should pause for one - even if that adds latency. Speed isn't the point of an agent that's wrong.
 3. **Structured, reviewable logs.** When something goes wrong (and eventually something will), you need to be able to answer exactly what the agent did and why, not just that it "seemed to malfunction." Treat agent actions like you'd treat any other audit trail.
 
 ## Start narrower than feels necessary
 
-The teams getting real value from agents right now tend to have started with a task most people would consider almost too boring to bother automating — and then expanded scope only after the guardrails proved themselves in production. The teams generating cautionary tales tend to have started ambitious and added safety measures after something went wrong.
+The teams getting real value from agents right now tend to have started with a task most people would consider almost too boring to bother automating - and then expanded scope only after the guardrails proved themselves in production. The teams generating cautionary tales tend to have started ambitious and added safety measures after something went wrong.
 
 That ordering matters more than most of the architecture decisions that get debated upfront.
 

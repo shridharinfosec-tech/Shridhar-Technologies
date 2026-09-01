@@ -43,6 +43,6 @@ export const faqs: Faq[] = [
   {
     question: "Can you modernize or take over an existing application?",
     answer:
-      "Yes — application modernization and takeover of existing codebases is one of our core services. We start with a technical audit to assess code quality, architecture, and risk areas, then propose either an incremental modernization path or a rebuild, depending on what the audit finds.",
+      "Yes - application modernization and takeover of existing codebases is one of our core services. We start with a technical audit to assess code quality, architecture, and risk areas, then propose either an incremental modernization path or a rebuild, depending on what the audit finds.",
   },
 ];

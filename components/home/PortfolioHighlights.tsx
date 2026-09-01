@@ -66,7 +66,7 @@ export default function PortfolioHighlights() {
           </div>
           <p className="max-w-md leading-relaxed text-fog">
             Software delivery is a means to a business outcome. These are
-            illustrative examples of the kind of work we take on — and the
+            illustrative examples of the kind of work we take on - and the
             results we build toward with every client.
           </p>
         </div>

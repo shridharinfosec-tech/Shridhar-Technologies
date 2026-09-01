@@ -23,7 +23,7 @@ const slides: Slide[] = [
       { words: ["Built", "to", "last."], className: "text-electric" },
     ],
     subtitle:
-      "We're a team of senior software engineers delivering SaaS platforms, cloud systems, AI products, and custom applications end to end — from first idea to production and the years after.",
+      "We're a team of senior software engineers delivering SaaS platforms, cloud systems, AI products, and custom applications end to end - from first idea to production and the years after.",
     primary: { label: "Get a Quote", href: "/contact" },
   },
   {
@@ -34,7 +34,7 @@ const slides: Slide[] = [
       { words: ["engineering."], className: "text-electric" },
     ],
     subtitle:
-      "We design, build, and run the software our clients depend on — modern platforms engineered for scale, shipped by people who own the outcome.",
+      "We design, build, and run the software our clients depend on - modern platforms engineered for scale, shipped by people who own the outcome.",
     primary: { label: "Explore Services", href: "/services" },
   },
   {
