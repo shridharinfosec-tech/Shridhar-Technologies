@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Nunito_Sans } from "next/font/google";
+import { Sora, Inter, JetBrains_Mono } from "next/font/google";
 import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,20 +8,29 @@ import { siteConfig } from "@/data/siteConfig";
 import { organizationJsonLd } from "@/lib/jsonld";
 import "./globals.css";
 
-// Montserrat carries the big hero headline, which is the LCP element on most
-// pages, so it preloads. Nunito Sans (body) is not preloaded - keeping it off
-// the critical path avoids bandwidth contention with the LCP heading font.
-// next/font's size-adjusted fallback keeps layout shift minimal on swap.
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+// Design-system type stack (revamp phase 2): Sora for display/headings, Inter
+// for body, JetBrains Mono for eyebrows, labels and metadata. Sora carries the
+// hero headline (the LCP element on most pages), so it preloads; the mono is
+// off the critical path. next/font self-hosts all three and its size-adjusted
+// fallback keeps layout shift minimal on swap.
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
-const nunitoSans = Nunito_Sans({
-  variable: "--font-nunito",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
   preload: false,
 });
@@ -55,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${nunitoSans.variable}`}
+      className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col bg-ink text-fog antialiased">
