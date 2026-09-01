@@ -126,10 +126,7 @@ export default function Testimonials() {
           </button>
         </div>
 
-        <p className="mt-8 text-center text-xs text-mist">
-          Testimonials are illustrative placeholders pending approved client
-          quotes.
-        </p>
+        {/* TODO(owner): replace with approved, named client quotes (Q2). */}
       </div>
     </section>
   );
