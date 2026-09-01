@@ -84,26 +84,26 @@ export default function AboutSection() {
 
           {/* Right - overlapping image collage */}
           <div>
-            <div className="relative mx-auto hidden h-[560px] w-full max-w-xl md:block">
+            <div className="relative hidden h-[600px] w-full md:block lg:h-[640px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/meeting.jpg"
                 alt="The team collaborating in the studio"
-                className="absolute top-0 left-0 h-[56%] w-[62%] rounded-xl object-cover shadow-2xl ring-1 ring-black/5"
+                className="absolute top-0 left-0 h-[58%] w-[70%] rounded-xl object-cover shadow-2xl ring-1 ring-black/5"
                 loading="lazy"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/team.jpg"
                 alt="Engineers reviewing work together"
-                className="absolute top-[20%] right-0 h-[34%] w-[38%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
+                className="absolute top-[26%] right-0 h-[40%] w-[44%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
                 loading="lazy"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/office.jpg"
                 alt="Inside our workspace"
-                className="absolute right-[6%] bottom-0 h-[44%] w-[50%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
+                className="absolute bottom-0 left-[24%] h-[48%] w-[58%] rounded-xl object-cover shadow-2xl ring-4 ring-ink"
                 loading="lazy"
               />
             </div>
