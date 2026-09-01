@@ -22,7 +22,7 @@ export default function TechLogo({
         loading="lazy"
         width={36}
         height={36}
-        className="h-9 w-9 object-contain grayscale transition-all duration-300 ease-out group-hover:grayscale-0"
+        className="h-9 w-9 object-contain transition-transform duration-200 ease-out group-hover:scale-110"
       />
       <span className="text-xs font-medium text-mist">{name}</span>
     </div>

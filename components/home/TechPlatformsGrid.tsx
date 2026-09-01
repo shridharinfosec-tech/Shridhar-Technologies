@@ -59,7 +59,7 @@ export default function TechPlatformsGrid({ compact = false }: { compact?: boole
                       width={32}
                       height={32}
                       loading="lazy"
-                      className="h-8 w-8 object-contain grayscale transition-all duration-300 ease-out group-hover/logo:grayscale-0"
+                      className="h-8 w-8 object-contain transition-transform duration-200 ease-out group-hover/logo:scale-110"
                     />
                     <span className="text-sm font-medium text-fog">
                       {tech.name}
