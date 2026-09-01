@@ -56,26 +56,30 @@ const socials = [
   { label: "Facebook", href: siteConfig.social.facebook, Icon: FacebookIcon },
   { label: "LinkedIn", href: siteConfig.social.linkedin, Icon: LinkedInIcon },
   { label: "Instagram", href: siteConfig.social.instagram, Icon: InstagramIcon },
-];
+].filter((social) => social.href && social.href !== "#");
 
 export default function TopBar() {
   return (
     <div className="hidden bg-[#141d38] md:block">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Social icons - boxed cells with hairline dividers (Engitech style). */}
-        <ul className="flex items-center border-l border-white/20">
-          {socials.map(({ label, href, Icon }) => (
-            <li key={label}>
-              <a
-                href={href}
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center border-r border-white/20 text-[#8891a0] transition-colors hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-electric"
-              >
-                <Icon />
-              </a>
-            </li>
-          ))}
-        </ul>
+        {socials.length > 0 ? (
+          <ul className="flex items-center border-l border-white/20">
+            {socials.map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center border-r border-white/20 text-[#8891a0] transition-colors hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-electric"
+                >
+                  <Icon />
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span />
+        )}
 
         <div className="flex items-stretch divide-x divide-white/20 text-xs font-medium text-[#9aa3b2]">
           <a

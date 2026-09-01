@@ -37,7 +37,8 @@ const socials = [
     href: siteConfig.social.instagram,
     icon: "M12 4.4c2.5 0 2.8 0 3.75.05.9.04 1.4.2 1.73.33.43.17.74.37 1.07.7.33.33.53.64.7 1.07.13.33.29.83.33 1.73.05.95.05 1.25.05 3.72s0 2.77-.05 3.72c-.04.9-.2 1.4-.33 1.73-.17.43-.37.74-.7 1.07-.33.33-.64.53-1.07.7-.33.13-.83.29-1.73.33-.95.05-1.25.05-3.75.05s-2.8 0-3.75-.05c-.9-.04-1.4-.2-1.73-.33a2.9 2.9 0 01-1.07-.7 2.9 2.9 0 01-.7-1.07c-.13-.33-.29-.83-.33-1.73C4.4 14.77 4.4 14.47 4.4 12s0-2.77.05-3.72c.04-.9.2-1.4.33-1.73.17-.43.37-.74.7-1.07.33-.33.64-.53 1.07-.7.33-.13.83-.29 1.73-.33C9.2 4.4 9.5 4.4 12 4.4zm0 3.7a3.9 3.9 0 100 7.8 3.9 3.9 0 000-7.8zm0 6.43a2.53 2.53 0 110-5.06 2.53 2.53 0 010 5.06zM16.35 7a.92.92 0 100 1.84.92.92 0 000-1.84z",
   },
-];
+  // Any social left as "#" is dropped so no placeholder links ship.
+].filter((social) => social.href && social.href !== "#");
 
 // Hand-drawn circuit-board artwork for the footer side edges. Faint traces
 // with a few electric-blue nodes; masked so it dissolves toward the centre.
@@ -189,6 +190,7 @@ export default function Footer() {
         </p>
 
         {/* Socials */}
+        {socials.length > 0 && (
         <ul className="mt-6 flex items-center justify-center gap-3">
           {socials.map((social) => (
             <li key={social.label}>
@@ -204,6 +206,7 @@ export default function Footer() {
             </li>
           ))}
         </ul>
+        )}
 
         {/* Legal */}
         <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-mist">

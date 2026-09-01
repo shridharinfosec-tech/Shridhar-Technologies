@@ -130,14 +130,14 @@ export default function PortfolioHighlights() {
         ))}
       </div>
 
-      <p className="mt-8 text-center text-xs text-mist">
+      {/* TODO(owner): replace placeholder case studies with named client work (Q2). */}
+      <p className="mt-8 text-center text-sm text-mist">
         <Link
           href="/portfolio"
-          className="underline underline-offset-2 hover:text-cyber"
+          className="font-semibold text-cyber hover:text-electric"
         >
-          Case studies are illustrative placeholders
-        </Link>{" "}
-        pending publishable client details.
+          View all case studies →
+        </Link>
       </p>
     </section>
   );

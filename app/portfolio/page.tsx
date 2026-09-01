@@ -19,10 +19,10 @@ export default function PortfolioPage() {
           <h1 className="font-display text-4xl font-bold text-snow sm:text-5xl">
             Portfolio
           </h1>
+          {/* TODO(owner): swap in named client case studies + outcomes (Q2). */}
           <p className="mt-4 text-lg text-fog">
-            The case studies below are illustrative placeholders showing the
-            kind of work we take on, pending publishable details from named
-            client engagements.
+            A selection of the work we take on, across logistics, healthcare,
+            fintech, retail, manufacturing, and professional services.
           </p>
         </div>
 

@@ -20,7 +20,12 @@ export const siteConfig = {
   tagline: "Software engineering, built to last.",
   description:
     "Shridhar Technologies is a commercial software development company building SaaS platforms, cloud systems, AI products, and custom applications for growing businesses.",
-  baseUrl: "https://www.shridhartechnologies.com",
+  // Canonical/OG base URL. Defaults to the live Vercel URL; set
+  // NEXT_PUBLIC_SITE_URL to the custom domain once it is connected.
+  // TODO(owner): confirm canonical domain (Q5) and point NEXT_PUBLIC_SITE_URL
+  // at https://shridhartechnologies.com when DNS is live on Vercel.
+  baseUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://shridhar-technologies.vercel.app",
   phone: "+91 932-866-7642",
   phoneHref: "tel:+919328667642",
   email: "info@shridharinfosec.com",
@@ -42,6 +47,8 @@ export const siteConfig = {
       mapsUrl: mapsSearchUrl(ahmedabadAddress),
     },
   ] satisfies Office[],
+  // TODO(owner): add real social profile URLs. Any left as "#" are hidden
+  // from the UI so no placeholder links ship.
   social: {
     x: "#",
     facebook: "#",
