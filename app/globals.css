@@ -28,6 +28,22 @@
   --color-violet: #4661c5; /* secondary indigo accent for gradients */
   --color-error: #cf2e2e; /* form validation red */
 
+  /* ---- Revamp design-system palette (phase 2) ----
+     Added alongside the current tokens so nothing restyles yet; pages migrate
+     onto these in later phases. Dark surfaces are ds-ink / ds-panel to avoid
+     colliding with the current (light) --color-ink / --color-panel. */
+  --color-ds-ink: #0a1020; /* primary dark surface */
+  --color-ds-panel: #101827; /* raised surface on dark */
+  --color-edge: #1e293b; /* border on dark */
+  --color-edge2: #2c3a4e; /* stronger border on dark, form fields */
+  --color-paper: #f6f8fb; /* light section background */
+  --color-pline: #dfe6f0; /* border on light */
+  --color-acc: #4c7dff; /* primary action, links, active state */
+  --color-amb: #f2a93b; /* attention, added items, highlights */
+  --color-mint: #57d9a3; /* success, live status, completed stages */
+  --color-dim: #8195af; /* secondary text on dark */
+  --color-bodytext: #556377; /* secondary text on light */
+
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --animate-pulse-slow: pulse-slow 3.5s var(--ease-out) infinite;
 }
@@ -101,8 +117,9 @@
 }
 
 @theme inline {
-  --font-display: var(--font-montserrat), system-ui, sans-serif;
-  --font-body: var(--font-nunito), system-ui, sans-serif;
+  --font-display: var(--font-sora), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
 }
 
 body {
