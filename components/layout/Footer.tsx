@@ -135,14 +135,20 @@ export default function Footer() {
               <p className="font-display mt-4 text-sm font-bold text-white">
                 {office.label}
               </p>
-              <a
-                href={office.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 max-w-xs text-sm leading-relaxed text-on-deep transition-colors hover:text-electric"
-              >
-                {office.address}
-              </a>
+              {office.mapsUrl ? (
+                <a
+                  href={office.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 max-w-xs text-sm leading-relaxed text-on-deep transition-colors hover:text-electric"
+                >
+                  {office.address}
+                </a>
+              ) : (
+                <span className="mt-2 max-w-xs text-sm leading-relaxed text-on-deep">
+                  {office.address}
+                </span>
+              )}
             </div>
           ))}
         </div>

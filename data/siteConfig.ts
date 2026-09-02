@@ -1,11 +1,10 @@
 export type Office = {
   label: string;
   address: string;
-  mapsUrl: string;
+  // Only set when there is a real, verified map pin. Offices without one show
+  // the address but no "Open in Google Maps" link.
+  mapsUrl?: string;
 };
-
-const mapsSearchUrl = (address: string) =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
 const headOfficeAddress =
   "B-338, Emerald One, Jetalpur Road, Vadodara, Gujarat, India - 390007";
@@ -39,12 +38,10 @@ export const siteConfig = {
     {
       label: "Branch Office - Mumbai",
       address: mumbaiAddress,
-      mapsUrl: mapsSearchUrl(mumbaiAddress),
     },
     {
       label: "Branch Office - Ahmedabad",
       address: ahmedabadAddress,
-      mapsUrl: mapsSearchUrl(ahmedabadAddress),
     },
   ] satisfies Office[],
   // TODO(owner): add real social profile URLs. Any left as "#" are hidden
