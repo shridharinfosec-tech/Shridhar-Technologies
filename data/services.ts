@@ -63,13 +63,14 @@ export const services: Service[] = [
     summary:
       "Multi-tenant SaaS platforms built for scale, from first release through growth.",
     longDescription:
-      "We design and build multi-tenant SaaS products from the ground up - tenant isolation, subscription billing, role-based access, and usage metering included from day one rather than retrofitted later. Whether you're building a new SaaS product or need to re-architect a single-tenant app into a multi-tenant platform, we handle the full stack: data modeling for tenant isolation, authentication and authorization, billing integration, and the admin tooling your support team will actually use. We favor proven, boring infrastructure choices - Postgres or MySQL with row-level tenancy, AWS for hosting, Docker for consistent environments - over exotic architectures that are hard to hire for and harder to debug at 2am. Every SaaS build includes a plan for onboarding, upgrade paths between plan tiers, and the observability you need to know when something's wrong before your customers tell you. We've built SaaS products for teams ranging from pre-seed startups shipping their first paying customer to established companies splitting a monolith into a proper multi-tenant platform.",
+      "We build multi-tenant SaaS products that hold up when the second hundred customers arrive. That means tenant isolation decided on purpose, billing that reconciles at the end of the month, an admin console your support team can actually use, and per-tenant observability so you find out about problems before your customers tell you. Most SaaS engagements run 14 to 18 weeks to first paying customer, with a clickable admin console in week three and a working build every second Friday after that. You do not have to take all six modules below; most clients start with the first three and add the rest as customers arrive.",
     keyPoints: [
-      "Multi-tenant architecture with proper data isolation from day one",
-      "Subscription billing, plan tiers, and usage metering",
-      "Role-based access control and admin tooling",
-      "Built on proven, hire-able infrastructure (Postgres/MySQL, AWS, Docker)",
-      "Onboarding flows and self-serve upgrade paths",
+      "Tenant model and isolation - row, schema or database-per-tenant, chosen against your compliance obligations rather than by default",
+      "Subscription and billing - Stripe, Razorpay or Chargebee, with proration, dunning, tax and refunds scoped from the start",
+      "Admin and support console - your team can impersonate, refund, resend and debug without opening an engineer ticket",
+      "Auth, roles and permissions - SSO, SCIM provisioning and role hierarchies that survive an enterprise security review",
+      "Per-tenant observability - metrics, traces and logs sliced by tenant, so you know who is having a bad day first",
+      "Onboarding and self-serve - signup, trial, activation and upgrade paths instrumented end to end",
     ],
     relatedTech: ["nodejs", "postgresql", "aws", "docker", "react"],
   },

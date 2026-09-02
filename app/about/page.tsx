@@ -113,6 +113,25 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
+
+        <h2 className="font-display mt-16 text-2xl font-bold text-snow">
+          How we use AI, and where we do not
+        </h2>
+        <div className="mt-4 space-y-4 leading-relaxed text-fog">
+          <p>
+            We use large language models in our own delivery work, for
+            scaffolding, test generation, migration groundwork and reviewing our
+            own code. It makes routine work faster, and it is part of why our
+            estimates have come down.
+          </p>
+          <p>
+            What it does not do is ship unread. Every line that reaches your
+            repository has been read, questioned and owned by a named engineer,
+            and architecture, security and data decisions are made by people. We
+            will tell you where AI was used on your project if you ask, because
+            you are buying our judgement, not our typing speed.
+          </p>
+        </div>
       </div>
 
       <CtaBand />

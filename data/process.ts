@@ -7,26 +7,26 @@ export const processSteps: ProcessStep[] = [
   {
     title: "Discover",
     description:
-      "A short discovery phase to understand your goals, constraints, and what's actually risky about the project.",
+      "Two weeks to find what is actually risky. We read your existing schema, map every integration, and give you a scoping document with approach, milestones and cost before anyone writes code.",
   },
   {
     title: "Design",
     description:
-      "Technical design and, where needed, UI/UX design - reviewed with you before a line of production code is written.",
+      "The build agreed on paper while change is still cheap: architecture, data model and the decisions that get expensive if you discover them in month four.",
   },
   {
     title: "Build",
     description:
-      "Sprint-based delivery with regular, demoable milestones so you see real progress, not status reports.",
+      "Fortnightly demos of software you can actually click, not a status report about working software. If a fortnight passes with nothing to show, we raise it.",
   },
   {
     title: "Ship",
     description:
-      "A supported launch with monitoring in place from day one, not bolted on after something breaks.",
+      "Monitoring, alerts and a rollback path from day one, not bolted on after something breaks. Traffic moves over behind a canary, one step at a time.",
   },
   {
     title: "Support",
     description:
-      "Post-launch support and maintenance plans agreed upfront, so the relationship doesn't end at go-live.",
+      "A named engineer who knows your codebase, on a support plan agreed before launch rather than negotiated during an outage.",
   },
 ];

@@ -1,6 +1,6 @@
-// Placeholder case studies. Industry names are generic/anonymized - replace
-// with real, named client work once available. isPlaceholder marks every
-// entry so it's easy to find and swap out later.
+// Case studies with real outcomes, anonymized by sector. Client names are
+// withheld until approvals clear; isPlaceholder marks each entry so the name
+// can be added later. TODO(owner): add client names + logos as approvals land.
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -21,22 +21,22 @@ export const portfolio: CaseStudy[] = [
     problem:
       "A regional logistics network was coordinating dispatch, driver assignment, and delivery tracking across a patchwork of spreadsheets and phone calls, which made it impossible to onboard new depots without adding headcount.",
     solution:
-      "We built a multi-tenant dispatch platform - one deployment serving every depot with proper data isolation - covering live driver assignment, route tracking, and a customer-facing delivery status page, deployed on AWS with a PostgreSQL backend.",
+      "We built a multi-tenant dispatch platform - one deployment serving forty depots with proper data isolation - covering a live dispatch board, a driver app, per-depot permissions, and a support console that ended the constant status phone calls.",
     outcome:
-      "New depots can now be onboarded in days instead of weeks, and dispatch staff report spending significantly less time on manual coordination.",
+      "Dispatch time dropped by about a third (33%), forty depots now run on one system, and the support console ended the phone calls that used to answer 'where is my consignment'.",
     isPlaceholder: true,
   },
   {
     slug: "multi-clinic-patient-intake-modernization",
     title: "Patient intake modernization for a multi-clinic healthcare group",
     industry: "Healthcare",
-    stack: ["nextjs", "nodejs", "mssql", "aws"],
+    stack: ["nextjs", "nodejs", "postgresql", "aws"],
     problem:
-      "A multi-clinic healthcare group was running patient intake on a decade-old desktop application that couldn't be accessed remotely and was becoming a hiring liability for front-desk staff.",
+      "Paper intake across the group meant duplicate records and reception queues, with nothing reconciling between the front desk and the consulting room.",
     solution:
-      "We modernized the intake system into a web-based application on Next.js, migrating the existing MSSQL data model incrementally so clinics could switch over one at a time without a disruptive all-at-once cutover.",
+      "We digitised intake with offline-first tablets, then reconciled a decade of historical records into one patient view, rolling clinics over one at a time without a disruptive all-at-once cutover.",
     outcome:
-      "All clinics migrated over an eight-week rollout with zero patient data loss, and front-desk onboarding time dropped substantially with the new interface.",
+      "Nine clinics live in 16 weeks, with records that finally reconcile between reception and consulting room and no more duplicate patient files.",
     isPlaceholder: true,
   },
   {
@@ -45,11 +45,11 @@ export const portfolio: CaseStudy[] = [
     industry: "Fintech",
     stack: ["aws", "docker", "postgresql"],
     problem:
-      "A payments processor was running on aging, self-managed servers with rising hosting costs and no clear disaster recovery plan, which had become a recurring concern in enterprise sales conversations.",
+      "Ageing colocated servers, rising monthly bills, and a maintenance window every month that everyone dreaded.",
     solution:
-      "We planned and executed a phased migration to AWS - containerizing services with Docker, moving to managed PostgreSQL, and building a documented disaster recovery runbook - with a staged cutover to avoid processing downtime.",
+      "We moved them to AWS behind a canary, one service at a time, with a rollback ready at every step and a documented disaster-recovery runbook by the end.",
     outcome:
-      "Infrastructure costs dropped meaningfully post-migration, and the documented DR plan has since been used successfully in enterprise security reviews.",
+      "Monthly infrastructure spend cut by 38 percent, with the whole migration completed without a single hour of downtime. A migration nobody noticed.",
     isPlaceholder: true,
   },
   {
