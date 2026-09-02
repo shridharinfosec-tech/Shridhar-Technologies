@@ -97,7 +97,7 @@ export default function Navbar() {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
-            className="text-sm font-bold text-snow transition-colors hover:text-cyber"
+            className="nav-underline text-sm font-bold text-snow transition-colors hover:text-cyber"
           >
             Home
           </Link>
@@ -131,7 +131,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-bold text-snow transition-colors hover:text-cyber"
+              className="nav-underline text-sm font-bold text-snow transition-colors hover:text-cyber"
             >
               {link.label}
             </Link>

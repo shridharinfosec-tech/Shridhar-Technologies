@@ -101,6 +101,27 @@
   }
 }
 
+/* Nav link underline that wipes in from the left on hover (revamp phase 3). */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+.nav-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 /* Site-wide scroll reveal for headings (applied from JS, so no-JS stays visible) */
 .sr {
   opacity: 0;

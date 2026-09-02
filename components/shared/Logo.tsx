@@ -4,8 +4,9 @@ import Link from "@/components/shared/Link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 
-// Geometric "cube" mark (angular facets in the blue palette) + wordmark,
-// echoing the Engitech logo lockup.
+// Monogram mark (revamp phase 3): a rounded-square outline in the current
+// text colour with a stylised "S" in the accent blue. Using currentColor for
+// the frame lets the mark adapt to light and dark surfaces automatically.
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
@@ -13,10 +14,23 @@ export function LogoMark({ className }: { className?: string }) {
       className={cn("h-9 w-9", className)}
       role="img"
       aria-label="Shridhar Technologies"
+      fill="none"
     >
-      <path d="M20 3 L34 11 L20 19 L6 11 Z" fill="#43baff" />
-      <path d="M6 11 L20 19 L20 37 L6 29 Z" fill="#0c63c7" />
-      <path d="M34 11 L20 19 L20 37 L34 29 Z" fill="#0b1e46" />
+      <rect
+        x="3.4"
+        y="3.4"
+        width="33.2"
+        height="33.2"
+        rx="10"
+        stroke="currentColor"
+        strokeWidth="2.4"
+      />
+      <path
+        d="M25 13 Q25 10 20 10 Q14 10 14 15 Q14 20 20 20 Q26 20 26 25 Q26 30 20 30 Q15 30 14 27"
+        stroke="#4C7DFF"
+        strokeWidth="2.7"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

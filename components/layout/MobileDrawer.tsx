@@ -3,6 +3,7 @@
 import Link from "@/components/shared/Link";
 import { useRef } from "react";
 import { categories, getServicesByCategory } from "@/data/services";
+import { siteConfig } from "@/data/siteConfig";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import Button from "@/components/shared/Button";
 import Accordion from "@/components/shared/Accordion";
@@ -112,6 +113,21 @@ export default function MobileDrawer({
         <Button href="/contact" onClick={onClose} className="mt-6 w-full">
           Get a Quote
         </Button>
+
+        <div className="mt-6 space-y-2 border-t border-line pt-5 text-sm">
+          <a
+            href={siteConfig.phoneHref}
+            className="block min-h-11 font-semibold text-snow hover:text-cyber"
+          >
+            {siteConfig.phone}
+          </a>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="block min-h-11 text-mist hover:text-cyber"
+          >
+            {siteConfig.email}
+          </a>
+        </div>
       </div>
     </div>
   );
