@@ -3,9 +3,9 @@ import Eyebrow from "@/components/shared/Eyebrow";
 
 const features = [
   {
-    title: "Senior Engineers",
+    title: "Senior by default",
     description:
-      "A team of 25+ senior engineers who own outcomes, not just tickets.",
+      "The person who scopes your project is the person who builds it. No rotating cast, no junior learning on your budget.",
     icon: (
       <path
         d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.3 7.2 17l.9-5.4-3.9-3.8 5.4-.8L12 2z"
@@ -14,9 +14,9 @@ const features = [
     ),
   },
   {
-    title: "End-to-End Delivery",
+    title: "Written down, not remembered",
     description:
-      "From first idea to production - and the years of support that follow.",
+      "Architecture decisions, trade-offs and risks live in your repository, so your team can read why something was built that way.",
     icon: (
       <>
         <circle
@@ -46,18 +46,18 @@ export default function AboutSection() {
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Left - content */}
           <div>
-            <Eyebrow>About Company</Eyebrow>
+            <Eyebrow>About the company</Eyebrow>
             <h2 className="font-display mt-4 text-3xl leading-tight font-extrabold text-snow sm:text-4xl">
-              Your partner for
+              An engineering partner,
               <br />
-              software that lasts
+              not a vendor
             </h2>
             <p className="mt-6 max-w-xl leading-relaxed text-fog">
-              Shridhar Technologies is the software engineering partner for
-              founders shipping a first product and for established companies
-              modernizing systems that have outgrown their architecture. We help
-              businesses grow through custom software development, cloud, AI, and
-              product engineering.
+              Shridhar Technologies started in 2020 with one stubborn idea: most
+              software fails after launch, not before it. Today we are 25 senior
+              engineers across Vadodara, Mumbai and Ahmedabad, working with
+              founders shipping a first product and companies modernizing systems
+              that outgrew their architecture.
             </p>
 
             <div className="mt-10 grid gap-8 sm:grid-cols-2">

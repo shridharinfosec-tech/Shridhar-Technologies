@@ -26,31 +26,31 @@ export const categories: Category[] = [
     slug: "digital-engineering",
     name: "Digital Engineering",
     description:
-      "SaaS platforms, modernization, and enterprise systems engineered for scale.",
+      "SaaS platforms, modernization and enterprise systems built to carry load and change.",
   },
   {
     slug: "cloud",
     name: "Cloud",
     description:
-      "Migration, consulting, DevOps, and managed services on AWS-first infrastructure.",
+      "Migration, DevOps and SRE on AWS-first infrastructure you can afford to run.",
   },
   {
     slug: "artificial-intelligence",
     name: "Artificial Intelligence",
     description:
-      "ML engineering, generative AI, and AI agents built for production, not demos.",
+      "Models and agents built to survive production traffic, not a demo.",
   },
   {
     slug: "application-engineering",
     name: "Application Engineering",
     description:
-      "Mobile apps, quality engineering, integrations, and ongoing application support.",
+      "Mobile, quality engineering, integrations and the long support tail.",
   },
   {
     slug: "product-engineering",
     name: "Product Engineering",
     description:
-      "Custom software, web and mobile apps, MVPs, and the design behind them.",
+      "MVPs, web and mobile apps, and the design that shapes them.",
   },
 ];
 

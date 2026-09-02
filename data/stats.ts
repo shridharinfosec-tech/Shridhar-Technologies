@@ -5,8 +5,8 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { label: "Projects delivered", value: 60, suffix: "+" },
-  { label: "Engineers on the team", value: 25, suffix: "+" },
+  { label: "Projects in production", value: 60, suffix: "+" },
+  { label: "Senior engineers", value: 25, suffix: "+" },
   { label: "Industries served", value: 10, suffix: "+" },
-  { label: "Years building software", value: 6, suffix: "+" },
+  { label: "Offices, one team", value: 3 },
 ];

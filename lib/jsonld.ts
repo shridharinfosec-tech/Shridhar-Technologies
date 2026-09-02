@@ -7,6 +7,7 @@ export function organizationJsonLd() {
     name: siteConfig.name,
     url: siteConfig.baseUrl,
     description: siteConfig.description,
+    foundingDate: "2020",
     email: siteConfig.email,
     telephone: siteConfig.phone,
     address: siteConfig.offices.map((office) => ({

@@ -18,13 +18,27 @@ export default function AboutPage() {
         <Breadcrumb items={[{ name: "About", href: "/about" }]} />
 
         <h1 className="font-display text-4xl font-bold text-snow sm:text-5xl">
-          About Shridhar Technologies
+          An engineering partner, not a vendor
         </h1>
 
         <div className="mt-8 space-y-5 text-lg leading-relaxed text-fog">
           <p>
-            Shridhar Technologies is the software engineering half of the
-            Shridhar group - sister brand of{" "}
+            Shridhar Technologies started in 2020 with a small team and one
+            stubborn idea: that most software fails after launch, not before it,
+            and that the years nobody wants to talk about in a pitch are the
+            years that actually decide whether a product survives.
+          </p>
+          <p>
+            Today we are 25 senior engineers across Vadodara, Mumbai and
+            Ahmedabad, working with founders shipping a first product and with
+            established companies modernizing systems that outgrew their
+            architecture. Our clients sit in four time zones, so our habits are
+            built around written decisions, visible progress and handovers that
+            do not depend on one person being awake.
+          </p>
+          <p>
+            We are the software engineering half of the Shridhar group - sister
+            brand of{" "}
             <a
               href={siteConfig.sisUrl}
               target="_blank"
@@ -33,25 +47,10 @@ export default function AboutPage() {
             >
               Shridhar InfoSec Solutions
             </a>
-            , a dedicated cybersecurity firm operating out of Vadodara,
-            Mumbai, and Ahmedabad. We share the same leadership, contact
-            infrastructure, and standards for client data handling as our
-            sister firm, applied to a different discipline: building the
-            software our clients run their business on.
-          </p>
-          <p>
-            We work with founders shipping a first product, and with
-            established companies modernizing systems that have outgrown
-            their original architecture. What connects those engagements
-            isn&apos;t the size of the client - it&apos;s a consistent
-            standard for how we scope work, communicate progress, and hand
-            off what we build.
-          </p>
-          <p>
-            Our mission is straightforward: build software that actually
-            works for the business it&apos;s built for, delivered by senior
-            engineers who stand behind their decisions, on a timeline and
-            budget agreed to upfront rather than discovered along the way.
+            , a dedicated cybersecurity firm. We share the same leadership,
+            offices and standards for client data handling, applied to a
+            different discipline: building the software our clients run their
+            business on.
           </p>
         </div>
 
