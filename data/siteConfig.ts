@@ -44,11 +44,17 @@ export const siteConfig = {
       address: ahmedabadAddress,
     },
   ] satisfies Office[],
-  // Shared Shridhar group social profiles.
+  // Social profiles. The four with real URLs currently point at the shared
+  // Shridhar group accounts; x and youtube are ready slots left as "#" (hidden
+  // from the UI) until Shridhar Technologies' own accounts exist.
+  // TODO(owner): replace with Shridhar Technologies' own profile URLs as the
+  // new accounts are created; set x / youtube once they exist.
   social: {
     instagram: "https://www.instagram.com/shridharinfosec",
     linkedin: "https://www.linkedin.com/company/shridhar-infosec/",
     facebook: "https://www.facebook.com/profile.php?id=61573446867142",
+    x: "#",
+    youtube: "#",
     medium: "https://medium.com/@shridharinfosec",
   },
 } as const;

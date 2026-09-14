@@ -8,6 +8,22 @@ function MediumIcon() {
   );
 }
 
+function XIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.83l4.713 6.231 5.447-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
+      <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" />
+    </svg>
+  );
+}
+
 function FacebookIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
@@ -55,6 +71,8 @@ const socials = [
   { label: "Instagram", href: siteConfig.social.instagram, Icon: InstagramIcon },
   { label: "LinkedIn", href: siteConfig.social.linkedin, Icon: LinkedInIcon },
   { label: "Facebook", href: siteConfig.social.facebook, Icon: FacebookIcon },
+  { label: "X", href: siteConfig.social.x, Icon: XIcon },
+  { label: "YouTube", href: siteConfig.social.youtube, Icon: YouTubeIcon },
   { label: "Medium", href: siteConfig.social.medium, Icon: MediumIcon },
 ].filter((social) => social.href && (social.href as string) !== "#");
 
