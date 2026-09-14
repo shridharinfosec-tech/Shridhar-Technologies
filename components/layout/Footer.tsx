@@ -37,18 +37,10 @@ const socials = [
     href: siteConfig.social.instagram,
     icon: "M12 4.4c2.5 0 2.8 0 3.75.05.9.04 1.4.2 1.73.33.43.17.74.37 1.07.7.33.33.53.64.7 1.07.13.33.29.83.33 1.73.05.95.05 1.25.05 3.72s0 2.77-.05 3.72c-.04.9-.2 1.4-.33 1.73-.17.43-.37.74-.7 1.07-.33.33-.64.53-1.07.7-.33.13-.83.29-1.73.33-.95.05-1.25.05-3.75.05s-2.8 0-3.75-.05c-.9-.04-1.4-.2-1.73-.33a2.9 2.9 0 01-1.07-.7 2.9 2.9 0 01-.7-1.07c-.13-.33-.29-.83-.33-1.73C4.4 14.77 4.4 14.47 4.4 12s0-2.77.05-3.72c.04-.9.2-1.4.33-1.73.17-.43.37-.74.7-1.07.33-.33.64-.53 1.07-.7.33-.13.83-.29 1.73-.33C9.2 4.4 9.5 4.4 12 4.4zm0 3.7a3.9 3.9 0 100 7.8 3.9 3.9 0 000-7.8zm0 6.43a2.53 2.53 0 110-5.06 2.53 2.53 0 010 5.06zM16.35 7a.92.92 0 100 1.84.92.92 0 000-1.84z",
   },
-  {
-    label: "X",
-    href: siteConfig.social.x,
-    icon: "M17.5 3h2.6l-5.7 6.5L21 21h-5.3l-4.1-5.4L6.8 21H4.2l6.1-7L3 3h5.4l3.7 4.9L17.5 3zm-.9 16.4h1.4L7.5 4.5H6l10.6 14.9z",
-  },
-  {
-    label: "YouTube",
-    href: siteConfig.social.youtube,
-    icon: "M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z",
-  },
-  // Any social left as "#" is dropped so no placeholder links ship.
-].filter((social) => social.href && (social.href as string) !== "#");
+];
+
+// A real URL becomes a clickable link; "#" shows the icon but is not clickable.
+const isLiveSocial = (href: string) => Boolean(href) && href !== "#";
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -89,23 +81,37 @@ export default function Footer() {
                 {siteConfig.email}
               </a>
             </div>
-            {socials.length > 0 && (
-              <ul className="mt-5 flex items-center gap-3">
-                {socials.map((social) => (
+            <ul className="mt-5 flex items-center gap-3">
+              {socials.map((social) => {
+                const icon = (
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
+                    <path d={social.icon} />
+                  </svg>
+                );
+                return (
                   <li key={social.label}>
-                    <a
-                      href={social.href}
-                      aria-label={social.label}
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-acc hover:text-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acc"
-                    >
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
-                        <path d={social.icon} />
-                      </svg>
-                    </a>
+                    {isLiveSocial(social.href) ? (
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-acc hover:text-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acc"
+                      >
+                        {icon}
+                      </a>
+                    ) : (
+                      <span
+                        aria-label={`${social.label} (coming soon)`}
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white"
+                      >
+                        {icon}
+                      </span>
+                    )}
                   </li>
-                ))}
-              </ul>
-            )}
+                );
+              })}
+            </ul>
           </div>
 
           {/* Services */}
