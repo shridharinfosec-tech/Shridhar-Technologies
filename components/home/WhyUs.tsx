@@ -56,13 +56,6 @@ export default function WhyUs() {
               key={item.title}
               className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-200 ease-out hover:border-electric/50"
             >
-              <span
-                aria-hidden
-                className="font-display absolute -top-3 right-4 text-6xl font-extrabold text-white/[0.06] select-none"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
               <h3 className="font-display relative text-lg font-bold text-white">
                 {item.title}
               </h3>
