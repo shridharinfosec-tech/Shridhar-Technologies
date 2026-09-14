@@ -1,9 +1,9 @@
 import { siteConfig } from "@/data/siteConfig";
 
-function XIcon() {
+function MediumIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.83l4.713 6.231 5.447-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
+      <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
     </svg>
   );
 }
@@ -52,31 +52,38 @@ function MailIcon() {
 }
 
 const socials = [
-  { label: "X", href: siteConfig.social.x, Icon: XIcon },
-  { label: "Facebook", href: siteConfig.social.facebook, Icon: FacebookIcon },
-  { label: "LinkedIn", href: siteConfig.social.linkedin, Icon: LinkedInIcon },
   { label: "Instagram", href: siteConfig.social.instagram, Icon: InstagramIcon },
-].filter((social) => social.href && social.href !== "#");
+  { label: "LinkedIn", href: siteConfig.social.linkedin, Icon: LinkedInIcon },
+  { label: "Facebook", href: siteConfig.social.facebook, Icon: FacebookIcon },
+  { label: "Medium", href: siteConfig.social.medium, Icon: MediumIcon },
+].filter((social) => social.href && (social.href as string) !== "#");
 
 export default function TopBar() {
   return (
     <div className="hidden bg-[#141d38] md:block">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
-        {/* Social icons - boxed cells with hairline dividers (Engitech style). */}
+        {/* Follow On: + social icons */}
         {socials.length > 0 ? (
-          <ul className="flex items-center border-l border-white/20">
-            {socials.map(({ label, href, Icon }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center border-r border-white/20 text-[#8891a0] transition-colors hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-electric"
-                >
-                  <Icon />
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="flex items-center gap-3 py-2">
+            <span className="text-xs font-bold tracking-wide text-white uppercase">
+              Follow On:
+            </span>
+            <ul className="flex items-center gap-1">
+              {socials.map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-9 w-9 items-center justify-center text-[#8891a0] transition-colors hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-electric"
+                  >
+                    <Icon />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : (
           <span />
         )}

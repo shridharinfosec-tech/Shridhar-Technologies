@@ -15,7 +15,9 @@ export function organizationJsonLd() {
       name: office.label,
       streetAddress: office.address,
     })),
-    sameAs: Object.values(siteConfig.social).filter((url) => url !== "#"),
+    sameAs: Object.values(siteConfig.social).filter(
+      (url) => (url as string) !== "#",
+    ),
   };
 }
 

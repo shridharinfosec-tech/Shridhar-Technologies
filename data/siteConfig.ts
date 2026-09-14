@@ -44,12 +44,11 @@ export const siteConfig = {
       address: ahmedabadAddress,
     },
   ] satisfies Office[],
-  // TODO(owner): add real social profile URLs. Any left as "#" are hidden
-  // from the UI so no placeholder links ship.
+  // Shared Shridhar group social profiles.
   social: {
-    x: "#",
-    facebook: "#",
-    linkedin: "#",
-    instagram: "#",
+    instagram: "https://www.instagram.com/shridharinfosec",
+    linkedin: "https://www.linkedin.com/company/shridhar-infosec/",
+    facebook: "https://www.facebook.com/profile.php?id=61573446867142",
+    medium: "https://medium.com/@shridharinfosec",
   },
 } as const;
