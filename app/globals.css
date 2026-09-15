@@ -1,113 +1,34 @@
 @import "tailwindcss";
 
 /*
- * Design language adapted from the Engitech IT-solutions template
- * (reference chosen by the client): bold Montserrat headings, Nunito Sans
- * body, a bright-blue accent over a dark-navy base, "//" section labels,
- * angular geometric cuts, and service cards with large ghost numbers.
- *
- * Engitech's own bright blue (#43BAFF) fails WCAG on white, so the accent is
- * split: --color-cyber is an AA-safe primary blue for buttons/links/text on
- * light, and --color-electric is the bright sky used for decorative fills and
- * as the accent ON dark-navy sections (where it clears AA comfortably).
+ * Design tokens. One palette: a dark-navy base, an AA-safe action blue
+ * (cyber) for buttons, links and labels on light surfaces, and a bright sky
+ * blue (electric) for accents on dark-navy sections, where it clears AA.
  */
 @theme {
   --color-ink: #ffffff; /* page background */
   --color-night: #f4f6fb; /* light alternate section background */
   --color-panel: #ffffff; /* card / panel background */
-  --color-snow: #0b1e46; /* headings / high-emphasis text — 16.3:1 on white */
-  --color-fog: #4c5566; /* primary body text — 7.5:1 */
-  --color-mist: #5f6778; /* secondary / muted text — 5.7:1 white, 5.25:1 on #f4f6fb */
-  --color-line: #0b1e4614; /* subtle border (navy @ ~8%) */
-  --color-line-bright: #0b1e4626; /* stronger border (navy @ ~15%) */
-  --color-cyber: #0c63c7; /* PRIMARY action blue — buttons/links/labels, 5.8:1 */
-  --color-electric: #43baff; /* BRIGHT sky — decorative fills + accent on dark */
+  --color-snow: #0b1e46; /* headings / high-emphasis text, 16.3:1 on white */
+  --color-fog: #4c5566; /* primary body text, 7.5:1 */
+  --color-mist: #5f6778; /* secondary text on light only, 5.7:1 on white */
+  --color-line: #0b1e4614; /* subtle border (navy at about 8%) */
+  --color-line-bright: #0b1e4626; /* stronger border (navy at about 15%) */
+  --color-cyber: #0c63c7; /* primary action blue, 5.8:1 on white */
+  --color-cyber-dark: #0a539f; /* primary action hover */
+  --color-electric: #43baff; /* bright accent on dark sections */
   --color-deep: #0b1e46; /* dark section background (navy) */
   --color-deep-2: #12285a; /* raised card panel on dark sections */
-  --color-on-deep: #c7d3e8; /* body text on dark sections — 10.8:1 */
+  --color-on-deep: #c7d3e8; /* body text on dark sections, 10.8:1 */
   --color-violet: #4661c5; /* secondary indigo accent for gradients */
   --color-error: #cf2e2e; /* form validation red */
 
-  /* ---- Revamp design-system palette (phase 2) ----
-     Added alongside the current tokens so nothing restyles yet; pages migrate
-     onto these in later phases. Dark surfaces are ds-ink / ds-panel to avoid
-     colliding with the current (light) --color-ink / --color-panel. */
-  --color-ds-ink: #0a1020; /* primary dark surface */
-  --color-ds-panel: #101827; /* raised surface on dark */
-  --color-edge: #1e293b; /* border on dark */
-  --color-edge2: #2c3a4e; /* stronger border on dark, form fields */
-  --color-paper: #f6f8fb; /* light section background */
-  --color-pline: #dfe6f0; /* border on light */
-  --color-acc: #4c7dff; /* primary action, links, active state */
-  --color-amb: #f2a93b; /* attention, added items, highlights */
-  --color-mint: #57d9a3; /* success, live status, completed stages */
-  --color-dim: #8195af; /* secondary text on dark */
-  --color-bodytext: #556377; /* secondary text on light */
-
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --animate-pulse-slow: pulse-slow 3.5s var(--ease-out) infinite;
-}
-
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
-/* Hero: a single fade of the whole block on first paint. */
-@keyframes hero-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-fade {
-  opacity: 0;
-  animation: hero-fade-in 0.6s var(--ease-out) forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-fade {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-}
-
-/* Nav link underline that wipes in from the left on hover (revamp phase 3). */
-.nav-underline {
-  position: relative;
-}
-.nav-underline::after {
-  content: "";
-  position: absolute;
-  left: 0.75rem;
-  right: 0.75rem;
-  bottom: 0.3rem;
-  height: 1.5px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s var(--ease-out);
-}
-.nav-underline:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
 }
 
 @theme inline {
   --font-display: var(--font-montserrat), system-ui, sans-serif;
   --font-body: var(--font-nunito), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
 }
 
 body {
@@ -130,7 +51,7 @@ body {
   background: var(--color-cyber);
   color: #ffffff;
   padding: 0.75rem 1.25rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   font-weight: 700;
   transition: top 0.2s var(--ease-out);
 }
@@ -139,81 +60,60 @@ body {
   top: 1rem;
 }
 
-/* "// LABEL" — Engitech's signature section eyebrow. The slashes are drawn
-   with a ::before so they can't be selected or read out as text. */
+/* Hero: a single fade of the whole block on first paint. */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade {
+  animation: hero-fade-in 0.4s var(--ease-out) both;
+}
+
+/* Nav link underline that wipes in from the left on hover. */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.3rem;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+.nav-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Section eyebrow: a small pill label above headings. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  background: color-mix(in srgb, var(--color-cyber) 10%, transparent);
   color: var(--color-cyber);
-}
-.eyebrow::before {
-  content: "//";
-  margin-right: 0.5rem;
-  color: var(--color-electric);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25rem;
 }
 .eyebrow-on-deep {
+  background: color-mix(in srgb, var(--color-electric) 14%, transparent);
   color: var(--color-electric);
-}
-.eyebrow-on-deep::before {
-  color: var(--color-electric);
-}
-
-/* Angular geometric cut — Engitech's diagonal clip on hero/media blocks. */
-.clip-angular {
-  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
-}
-.clip-angular-tr {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
-}
-
-/* Large ghost number behind service cards. */
-.ghost-number {
-  font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--color-line-bright);
-}
-.ghost-number-deep {
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.14);
-}
-
-/* Services marquee: two duplicated tracks translate together so the loop is
-   seamless. Pausing is pure CSS (:hover/:focus-within), no JS timers. */
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee-track {
-  animation: marquee-scroll 50s linear infinite;
-}
-
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-    flex-wrap: wrap;
-    transform: none;
-  }
-
-  .animate-pulse-slow {
-    animation: none;
-  }
 }
 
 /* Accordion (FAQ, mobile category list): grid-template-rows 0fr -> 1fr gives
@@ -232,12 +132,6 @@ body {
   overflow: hidden;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .accordion-panel {
-    transition: none;
-  }
-}
-
 /* Section scroll reveal. SectionReveal sets data-reveal from JS only for
    sections that start below the viewport, so server HTML is always visible. */
 [data-reveal="hidden"] {
@@ -254,6 +148,15 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-fade {
+    animation: none;
+  }
+
+  .accordion-panel,
+  .nav-underline::after {
+    transition: none;
+  }
+
   [data-reveal] {
     opacity: 1;
     transform: none;

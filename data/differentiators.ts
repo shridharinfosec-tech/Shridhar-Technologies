@@ -1,27 +1,29 @@
 export type Differentiator = {
   title: string;
   description: string;
+  icon: "senior" | "build" | "pricing" | "support";
 };
 
 export const differentiators: Differentiator[] = [
   {
-    title: "You work with seniors, always",
-    description:
-      "Every engagement is led by someone who has shipped and then operated a system like yours. Juniors exist on our team, but they are not the ones learning on your project.",
+    title: "Senior engineers only",
+    description: "The people who scope your project are the people who build it.",
+    icon: "senior",
   },
   {
-    title: "Progress you can click",
-    description:
-      "A working build in staging every second Friday. If a fortnight passes with nothing to show, that is a problem we raise, not one you discover at the end.",
+    title: "A working build every two weeks",
+    description: "You see and click real progress in staging, not status reports.",
+    icon: "build",
   },
   {
-    title: "No surprises at invoice time",
+    title: "Fixed milestones, clear pricing",
     description:
-      "Fixed milestones agreed in scoping, and a written change process when scope moves. You will never open an invoice and find a number you have not already seen.",
+      "Costs are agreed up front. Scope changes are written down before they are billed.",
+    icon: "pricing",
   },
   {
-    title: "We are still here in year two",
-    description:
-      "Support terms are agreed before launch, not negotiated during an outage. Most of our clients are on their third or fourth piece of work with us.",
+    title: "Support after launch",
+    description: "Support terms are agreed before go-live, not during an outage.",
+    icon: "support",
   },
 ];

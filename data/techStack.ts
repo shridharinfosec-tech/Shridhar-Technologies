@@ -4,7 +4,12 @@ export type TechGroup =
   | "Backend"
   | "Databases"
   | "Cloud & DevOps"
-  | "Commerce";
+  | "Commerce"
+  | "AI";
+
+// [OWNER TO CONFIRM] The AI tools actually used on client work (for example
+// OpenAI, Anthropic, LangChain, Vercel AI SDK, Pinecone). Add them below in an
+// "AI" group with a logo in public/tech, and add "AI" to techGroups.
 
 export type Tech = {
   id: string;

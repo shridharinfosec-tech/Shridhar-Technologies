@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-// The "// LABEL" section eyebrow from the Engitech design language.
+// Small pill label above section headings.
 export default function Eyebrow({
   children,
   onDeep = false,

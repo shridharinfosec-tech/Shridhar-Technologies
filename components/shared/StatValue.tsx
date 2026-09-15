@@ -14,13 +14,15 @@ export default function StatValue({
   stat: Stat;
   className?: string;
 }) {
-  const ref = useCountUp<HTMLSpanElement>(stat.value);
+  const ref = useCountUp<HTMLSpanElement>(stat.value, {
+    enabled: stat.countUp !== false,
+  });
   const spokenSuffix = stat.suffix === "+" ? " plus" : (stat.suffix ?? "");
 
   return (
     <span
       role="img"
-      aria-label={`${stat.value}${spokenSuffix} ${stat.label.toLowerCase()}`}
+      aria-label={`${stat.label}: ${stat.value}${spokenSuffix}`}
       className={cn("tabular-nums", className)}
     >
       <span aria-hidden ref={ref}>

@@ -6,27 +6,22 @@ export type ProcessStep = {
 export const processSteps: ProcessStep[] = [
   {
     title: "Discover",
-    description:
-      "Two weeks to find what is actually risky. We read your existing schema, map every integration, and give you a scoping document with approach, milestones and cost before anyone writes code.",
+    description: "A short scoping sprint. You get a plan, milestones and a fixed price.",
   },
   {
     title: "Design",
-    description:
-      "The build agreed on paper while change is still cheap: architecture, data model and the decisions that get expensive if you discover them in month four.",
+    description: "Architecture, data model and clickable screens agreed before build.",
   },
   {
     title: "Build",
-    description:
-      "Fortnightly demos of software you can actually click, not a status report about working software. If a fortnight passes with nothing to show, we raise it.",
+    description: "AI-assisted sprints with a demo you can click every two weeks.",
   },
   {
-    title: "Ship",
-    description:
-      "Monitoring, alerts and a rollback path from day one, not bolted on after something breaks. Traffic moves over behind a canary, one step at a time.",
+    title: "Launch",
+    description: "Monitoring, alerts and a rollback plan from day one.",
   },
   {
     title: "Support",
-    description:
-      "A named engineer who knows your codebase, on a support plan agreed before launch rather than negotiated during an outage.",
+    description: "A named engineer who knows your code, on an agreed support plan.",
   },
 ];

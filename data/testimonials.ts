@@ -1,10 +1,14 @@
-// Illustrative placeholder testimonials - anonymized by role rather than
-// naming specific clients, until real, approved quotes are available.
 export type Testimonial = {
   name: string;
   role: string;
   quote: string;
 };
+
+// [OWNER TO CONFIRM] These are illustrative placeholders anonymized by role,
+// not approved client quotes, so the homepage section stays hidden. Replace
+// them with real quotes (name, title and company, or for example "Name
+// withheld, CTO at a fintech scale-up"), keep two or more, then set this to true.
+export const showTestimonials = false;
 
 export const testimonials: Testimonial[] = [
   {
@@ -23,7 +27,7 @@ export const testimonials: Testimonial[] = [
     name: "Operations Director",
     role: "Multi-clinic healthcare group",
     quote:
-      "What stood out was the communication - visible progress every week and no surprises at invoice time. It felt like working with an in-house team, not an outside vendor.",
+      "What stood out was the communication: visible progress every week and no surprises at invoice time. It felt like working with an in-house team, not an outside vendor.",
   },
   {
     name: "CTO",

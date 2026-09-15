@@ -1,39 +1,33 @@
 import type { Metadata } from "next";
-import { portfolio } from "@/data/portfolio";
-import PortfolioCard from "@/components/portfolio/PortfolioCard";
+import { Suspense } from "react";
+import PortfolioFilter, { PortfolioGrid } from "@/components/portfolio/PortfolioFilter";
 import CtaBand from "@/components/layout/CtaBand";
-import Breadcrumb from "@/components/shared/Breadcrumb";
+import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Our work",
   description:
-    "Case studies from Shridhar Technologies across logistics, healthcare, fintech, retail, manufacturing, and professional services.",
+    "Case studies from Shridhar Technologies: SaaS, cloud migration, AI and modernization projects for logistics, healthcare, fintech, retail and manufacturing.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {
   return (
     <>
-      <div className="mx-auto max-w-7xl px-6 pt-12 lg:px-8">
-        <Breadcrumb items={[{ name: "Portfolio", href: "/portfolio" }]} />
-        <div className="max-w-2xl">
-          <h1 className="font-display text-4xl font-bold text-snow sm:text-5xl">
-            Portfolio
-          </h1>
-          {/* TODO(owner): swap in named client case studies + outcomes (Q2). */}
-          <p className="mt-4 text-lg text-fog">
-            A selection of the work we take on, across logistics, healthcare,
-            fintech, retail, manufacturing, and professional services.
-          </p>
-        </div>
+      <PageHero
+        breadcrumb={[{ name: "Work", href: "/portfolio" }]}
+        eyebrow="Case studies"
+        title="Our work"
+        intro="Products we have designed, built and launched, with the results they delivered."
+      />
 
-        <div className="mt-12 grid gap-6 pb-24 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolio.map((study) => (
-            <PortfolioCard key={study.slug} study={study} />
-          ))}
-        </div>
+      <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8">
+        <Suspense fallback={<PortfolioGrid />}>
+          <PortfolioFilter />
+        </Suspense>
       </div>
 
-      <CtaBand />
+      <CtaBand secondaryLabel="Explore services" secondaryHref="/services" />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "r
 import { budgetRanges, launchWindows, projectTypes } from "@/data/contactForm";
 import { siteConfig } from "@/data/siteConfig";
 import { submitContactForm, type ContactFormData } from "@/lib/contact";
+import { trackEvent } from "@/lib/analytics";
 import Button from "@/components/shared/Button";
 import { SpinnerIcon } from "@/components/shared/Icons";
 import { cn } from "@/lib/cn";
@@ -125,6 +126,7 @@ export default function ContactForm() {
     setStatus("sending");
     try {
       await submitContactForm({ ...data, name, email: data.email.trim() });
+      trackEvent("form_submit_success", { projectType: data.projectType || "Not given" });
       setStatus("success");
       setData(initialData);
     } catch (error) {

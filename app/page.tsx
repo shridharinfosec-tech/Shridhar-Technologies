@@ -1,58 +1,51 @@
+import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
-import ServicesMarquee from "@/components/home/ServicesMarquee";
-import AboutSection from "@/components/home/AboutSection";
-import StatsStrip from "@/components/home/StatsStrip";
+import ProofStrip from "@/components/home/ProofStrip";
+import AiDelivery from "@/components/home/AiDelivery";
 import ServicesOverview from "@/components/home/ServicesOverview";
-import WhyUs from "@/components/home/WhyUs";
-import TechPlatformsGrid from "@/components/home/TechPlatformsGrid";
-import ProcessSteps from "@/components/home/ProcessSteps";
 import PortfolioHighlights from "@/components/home/PortfolioHighlights";
+import ProcessSteps from "@/components/home/ProcessSteps";
+import WhyUs from "@/components/home/WhyUs";
 import Testimonials from "@/components/home/Testimonials";
-import FaqAccordion from "@/components/shared/FaqAccordion";
+import TechPlatformsGrid from "@/components/home/TechPlatformsGrid";
+import FaqSection from "@/components/home/FaqSection";
 import CtaBand from "@/components/layout/CtaBand";
 import SectionReveal from "@/components/shared/SectionReveal";
-import Eyebrow from "@/components/shared/Eyebrow";
+import { showTestimonials } from "@/data/testimonials";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <ServicesMarquee />
-      <SectionReveal as="section">
-        <StatsStrip />
+      <ProofStrip />
+      <SectionReveal>
+        <AiDelivery />
       </SectionReveal>
-      <SectionReveal as="section">
-        <AboutSection />
-      </SectionReveal>
-      <SectionReveal as="section">
+      <SectionReveal>
         <ServicesOverview />
       </SectionReveal>
-      <SectionReveal as="section">
-        <WhyUs />
-      </SectionReveal>
-      <SectionReveal as="section">
-        <TechPlatformsGrid compact />
-      </SectionReveal>
-      <SectionReveal as="section">
-        <ProcessSteps />
-      </SectionReveal>
-      <SectionReveal as="section">
+      <SectionReveal>
         <PortfolioHighlights />
       </SectionReveal>
-      <SectionReveal as="section">
-        <Testimonials />
+      <SectionReveal>
+        <ProcessSteps />
       </SectionReveal>
-      <section id="faq" className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow className="justify-center">FAQ</Eyebrow>
-          <h2 className="font-display mt-4 text-3xl leading-tight font-extrabold text-snow sm:text-4xl">
-            Read most frequent questions
-          </h2>
-        </div>
-        <div className="mt-14">
-          <FaqAccordion />
-        </div>
-      </section>
+      <SectionReveal>
+        <WhyUs />
+      </SectionReveal>
+      {showTestimonials && (
+        <SectionReveal>
+          <Testimonials />
+        </SectionReveal>
+      )}
+      <SectionReveal>
+        <TechPlatformsGrid variant="wall" />
+      </SectionReveal>
+      <FaqSection />
       <CtaBand />
     </>
   );

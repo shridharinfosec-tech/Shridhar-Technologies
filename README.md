@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shridhar Technologies website
 
-## Getting Started
+Marketing site for Shridhar Technologies, an AI-accelerated software studio. Built with Next.js 16 (App Router), React 19, Tailwind CSS 4 and MDX.
 
-First, run the development server:
+> This project runs a Next.js version with breaking changes. Before editing routing, metadata, fonts, images or route handlers, read the matching guide in `node_modules/next/dist/docs/` (see `AGENTS.md`).
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run lint
+npm run build   # static export to out/ (native Next.js build on Vercel)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Set these in the hosting dashboard (and in `.env.local` for local testing).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Canonical domain used for canonical tags, the sitemap, robots, JSON-LD and Open Graph URLs. Falls back to the Vercel subdomain. |
+| `NEXT_PUBLIC_WEB3FORMS_KEY` | Web3Forms access key for the contact form. Without it the form shows an error with the fallback email. |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Enables Plausible analytics and the `cta_click`, `form_submit_success`, `call_click`, `whatsapp_click` and `booking_opened` events. Leave unset to disable analytics. |
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+Copy lives in data files, not in components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| What | Where |
+|---|---|
+| Company details, phone, email, WhatsApp, booking link, offices, social links | `data/siteConfig.ts` |
+| Homepage hero, proof points, delivery timeline | `data/hero.ts` |
+| "How we ship faster" section | `data/aiDelivery.ts` |
+| "What we build" cards | `data/outcomes.ts` |
+| Services and categories (copy, SEO descriptions, AI bullets) | `data/services.ts` |
+| Case studies | `data/portfolio.ts` |
+| Numbers shown anywhere on the site | `data/stats.ts` |
+| FAQs, process steps, differentiators, values, engagement models, careers | `data/*.ts` |
+| Testimonials (hidden until `showTestimonials` is true) | `data/testimonials.ts` |
+| Legal pages | `data/legal.ts` |
+| Blog posts | `content/blog/*.mdx`, registered in `data/blogIndex.ts` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Writing rules: no em dashes or en dashes in copy, and no spaced hyphen used as a dash. Use a period, comma, colon or parentheses instead.
 
-## Deploy on Vercel
+### Blog posts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Each MDX file exports `metadata` (title, excerpt, date, tags, readingTime, and optional `image` and `author`). Add `<InlineCta />` after the second section. The table of contents is built from `## ` headings.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Images
+
+Photos live in `public/images` as `<name>-800.webp` and `<name>-1600.webp` (under 150KB each). Reference them by base path, for example `/images/team`, through `components/shared/ResponsiveImage.tsx`. To add one, export a 1600px wide WebP and an 800px version with the same name.
+
+## Owner checklist
+
+Facts that still need confirming are marked in code comments with `[OWNER TO CONFIRM]`:
+
+```bash
+grep -rn "OWNER TO CONFIRM" app components data content lib
+```
+
+These include the company email domain, booking link, WhatsApp number, real testimonials, leadership profiles, AI tools and data policy, prices, domain, and confirmation that the case studies are publishable.
+
+## Deploying
+
+The site deploys on Vercel, which builds Next.js natively. Outside Vercel, `npm run build` produces a static export in `out/` that any static host can serve. The contact form (Web3Forms) and analytics (Plausible) are client side, so both builds behave the same.
+
+Before launch, set `NEXT_PUBLIC_SITE_URL` to the real domain and redirect the Vercel subdomain to it.

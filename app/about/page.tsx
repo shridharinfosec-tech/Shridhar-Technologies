@@ -1,138 +1,150 @@
 import type { Metadata } from "next";
-import { values, leadershipPlaceholders } from "@/data/about";
+import { aboutIntro, leadership, sisterBrandNote, values } from "@/data/about";
 import { stats } from "@/data/stats";
 import { siteConfig } from "@/data/siteConfig";
 import CtaBand from "@/components/layout/CtaBand";
 import Breadcrumb from "@/components/shared/Breadcrumb";
+import Eyebrow from "@/components/shared/Eyebrow";
+import Link from "@/components/shared/Link";
+import ResponsiveImage from "@/components/shared/ResponsiveImage";
+import SectionHeader from "@/components/shared/SectionHeader";
+import ProcessSteps from "@/components/home/ProcessSteps";
+import { ArrowRightIcon } from "@/components/shared/Icons";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About us",
   description:
-    "Shridhar Technologies is a commercial software development company and sister brand of Shridhar InfoSec Solutions.",
+    "Shridhar Technologies is an AI-accelerated software studio with senior engineers in Vadodara, Mumbai and Ahmedabad, and the sister brand of Shridhar InfoSec Solutions.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
     <>
-      <div className="mx-auto max-w-3xl px-6 pt-12 pb-24 lg:px-8">
-        <Breadcrumb items={[{ name: "About", href: "/about" }]} />
+      <section className="border-b border-line bg-night">
+        <div className="mx-auto max-w-7xl px-6 pt-8 pb-12 sm:pb-16 lg:px-8">
+          <Breadcrumb items={[{ name: "About", href: "/about" }]} />
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <Eyebrow>About us</Eyebrow>
+              <h1 className="font-display mt-4 text-3xl leading-tight font-extrabold text-snow sm:text-5xl">
+                {aboutIntro.title}
+              </h1>
+              <div className="mt-6 space-y-4 text-lg leading-relaxed text-fog">
+                {aboutIntro.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+            {/* [OWNER TO CONFIRM] Replace the stock photo with a real team or office photo. */}
+            <ResponsiveImage
+              src="/images/office"
+              alt="Engineers working in an open-plan office"
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="aspect-[4/3] max-h-[480px] w-full rounded-xl object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
-        <h1 className="font-display text-4xl font-bold text-snow sm:text-5xl">
-          An engineering partner, not a vendor
-        </h1>
+      <section aria-label="Company in numbers" className="bg-ink">
+        <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-12 sm:grid-cols-4 lg:px-8">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <dt className="order-2 mt-1 text-sm text-fog">{stat.label}</dt>
+              <dd className="font-display -order-1 text-4xl font-extrabold text-snow">
+                {stat.value}
+                {stat.suffix}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
 
-        <div className="mt-8 space-y-5 text-lg leading-relaxed text-fog">
-          <p>
-            Shridhar Technologies started in 2020 with a small team and one
-            stubborn idea: that most software fails after launch, not before it,
-            and that the years nobody wants to talk about in a pitch are the
-            years that actually decide whether a product survives.
-          </p>
-          <p>
-            Today we are 25 senior engineers across Vadodara, Mumbai and
-            Ahmedabad, working with founders shipping a first product and with
-            established companies modernizing systems that outgrew their
-            architecture. Our clients sit in four time zones, so our habits are
-            built around written decisions, visible progress and handovers that
-            do not depend on one person being awake.
-          </p>
-          <p>
-            We are the software engineering half of the Shridhar group - sister
-            brand of{" "}
+      <section className="border-t border-line bg-ink">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+          <SectionHeader eyebrow="Values" title="What we value" />
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map((value) => (
+              <li key={value.title} className="rounded-xl border border-line bg-panel p-6">
+                <h3 className="font-display text-lg font-bold text-snow">{value.title}</h3>
+                <p className="mt-2 leading-relaxed text-fog">{value.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <ProcessSteps id="process" className="bg-night" />
+
+      {leadership.length > 0 && (
+        <section className="bg-ink">
+          <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+            <SectionHeader eyebrow="Leadership" title="The people you will work with" />
+            <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {leadership.map((leader) => (
+                <li key={leader.name} className="rounded-xl border border-line p-6">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={leader.photo}
+                    alt={leader.name}
+                    width={96}
+                    height={96}
+                    loading="lazy"
+                    className="h-24 w-24 rounded-full object-cover"
+                  />
+                  <h3 className="font-display mt-4 text-lg font-bold text-snow">{leader.name}</h3>
+                  <p className="text-fog">{leader.role}</p>
+                  {leader.linkedin && (
+                    <a
+                      href={leader.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex min-h-11 items-center font-semibold text-cyber"
+                    >
+                      LinkedIn profile
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <section className="bg-ink">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:px-8">
+          <div>
+            <h2 className="font-display text-2xl font-bold text-snow">Part of the Shridhar group</h2>
+            <p className="mt-4 leading-relaxed text-fog">{sisterBrandNote}</p>
             <a
               href={siteConfig.sisUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-cyber underline underline-offset-2 hover:text-electric"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 font-semibold text-cyber hover:text-cyber-dark"
             >
-              Shridhar InfoSec Solutions
+              Visit Shridhar InfoSec Solutions
+              <ArrowRightIcon className="h-4 w-4" />
             </a>
-            , a dedicated cybersecurity firm. We share the same leadership,
-            offices and standards for client data handling, applied to a
-            different discipline: building the software our clients run their
-            business on.
-          </p>
-        </div>
-
-        <div className="mt-12 overflow-hidden rounded-2xl border border-line">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/office.jpg"
-            alt="The Shridhar Technologies team at work"
-            className="aspect-[16/7] w-full object-cover"
-            loading="lazy"
-          />
-        </div>
-
-        <div className="mt-16 grid grid-cols-2 gap-8 border-y border-line py-10 sm:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="font-display text-3xl font-bold text-snow">
-                {stat.value}
-                {stat.suffix}
-              </p>
-              <p className="mt-1 text-xs text-mist">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-
-        <h2 className="font-display mt-16 text-2xl font-bold text-snow">
-          What we value
-        </h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {values.map((value) => (
-            <div key={value.title} className="rounded-2xl border border-line p-6">
-              <h3 className="font-display text-lg font-semibold text-snow">
-                {value.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-fog">
-                {value.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <h2 className="font-display mt-16 text-2xl font-bold text-snow">
-          Leadership
-        </h2>
-        <p className="mt-2 text-sm text-mist">
-          Named profiles coming soon - roles below reflect the current team
-          structure.
-        </p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          {leadershipPlaceholders.map((leader) => (
-            <div
-              key={leader.role}
-              className="rounded-2xl border border-dashed border-line-bright p-6 text-center"
+          </div>
+          <div>
+            <h2 className="font-display text-2xl font-bold text-snow">How we use AI</h2>
+            <p className="mt-4 leading-relaxed text-fog">
+              AI speeds up scaffolding, testing and review on every project, and every
+              line that reaches your repository is still read and owned by a named
+              engineer. Architecture, security and data decisions are made by people.
+            </p>
+            <Link
+              href="/how-we-work#ai-delivery"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 font-semibold text-cyber hover:text-cyber-dark"
             >
-              <div
-                aria-hidden
-                className="mx-auto h-16 w-16 rounded-full bg-night"
-              />
-              <p className="mt-4 text-sm font-medium text-mist">{leader.role}</p>
-            </div>
-          ))}
+              See where AI fits in our delivery
+              <ArrowRightIcon className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
-
-        <h2 className="font-display mt-16 text-2xl font-bold text-snow">
-          How we use AI, and where we do not
-        </h2>
-        <div className="mt-4 space-y-4 leading-relaxed text-fog">
-          <p>
-            We use large language models in our own delivery work, for
-            scaffolding, test generation, migration groundwork and reviewing our
-            own code. It makes routine work faster, and it is part of why our
-            estimates have come down.
-          </p>
-          <p>
-            What it does not do is ship unread. Every line that reaches your
-            repository has been read, questioned and owned by a named engineer,
-            and architecture, security and data decisions are made by people. We
-            will tell you where AI was used on your project if you ask, because
-            you are buying our judgement, not our typing speed.
-          </p>
-        </div>
-      </div>
+      </section>
 
       <CtaBand />
     </>

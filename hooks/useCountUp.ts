@@ -13,12 +13,15 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
  * while it is still off screen, then counts up once it scrolls into view.
  * It writes to the text node directly so the component never re-renders.
  */
-export function useCountUp<T extends HTMLElement>(target: number, duration = 1600) {
+export function useCountUp<T extends HTMLElement>(
+  target: number,
+  { enabled = true, duration = 1600 }: { enabled?: boolean; duration?: number } = {},
+) {
   const ref = useRef<T>(null);
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return;
+    if (!node || !enabled) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Already on screen (first paint, anchor jump, back navigation): keep the
     // final value rather than flashing back to zero.
@@ -49,7 +52,7 @@ export function useCountUp<T extends HTMLElement>(target: number, duration = 160
       cancelAnimationFrame(frame);
       node.textContent = String(target);
     };
-  }, [target, duration]);
+  }, [target, enabled, duration]);
 
   return ref;
 }

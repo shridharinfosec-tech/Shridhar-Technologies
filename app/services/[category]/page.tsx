@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { categories, getCategory, getServicesByCategory } from "@/data/services";
+import { bookCallHref } from "@/data/siteConfig";
 import ServiceCard from "@/components/services/ServiceCard";
 import CtaBand from "@/components/layout/CtaBand";
-import Breadcrumb from "@/components/shared/Breadcrumb";
+import PageHero from "@/components/shared/PageHero";
+import ProofPoints from "@/components/shared/ProofPoints";
+import Button from "@/components/shared/Button";
 
 export function generateStaticParams() {
   return categories.map((category) => ({ category: category.slug }));
@@ -19,8 +22,9 @@ export async function generateMetadata({
   if (!category) return {};
 
   return {
-    title: category.name,
-    description: category.description,
+    title: `${category.name} services`,
+    description: `${category.description} AI-accelerated delivery from senior engineers at Shridhar Technologies, with fixed milestones and code you own.`,
+    alternates: { canonical: `/services/${category.slug}` },
   };
 }
 
@@ -34,33 +38,49 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   const categoryServices = getServicesByCategory(category.slug);
+  // Fill the last desktop row with a CTA card instead of leaving an orphan.
+  const showCtaCard = categoryServices.length % 3 !== 0;
 
   return (
     <>
-      <div className="mx-auto max-w-7xl px-6 pt-12 lg:px-8">
-        <Breadcrumb
-          items={[
-            { name: "Services", href: "/services" },
-            { name: category.name, href: `/services/${category.slug}` },
-          ]}
-        />
-        <div className="max-w-2xl">
-          <h1 className="font-display text-4xl font-bold text-snow sm:text-5xl">
-            {category.name}
-          </h1>
-          <p className="mt-4 text-lg text-fog">{category.description}</p>
-        </div>
+      <PageHero
+        breadcrumb={[
+          { name: "Services", href: "/services" },
+          { name: category.name, href: `/services/${category.slug}` },
+        ]}
+        eyebrow="Services"
+        title={`${category.name} services`}
+        intro={category.description}
+      >
+        <Button href={bookCallHref} className="mt-8">
+          Book a call
+        </Button>
+        <ProofPoints className="mt-6" />
+      </PageHero>
 
-        <div className="mt-12 grid gap-6 pb-24 sm:grid-cols-2 lg:grid-cols-3">
-          {categoryServices.map((service, index) => (
-            <ServiceCard
-              key={service.slug}
-              service={service}
-              categorySlug={category.slug}
-              index={index}
-            />
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {categoryServices.map((service) => (
+            <li key={service.slug}>
+              <ServiceCard service={service} categorySlug={category.slug} />
+            </li>
           ))}
-        </div>
+          {showCtaCard && (
+            <li className="flex flex-col justify-between rounded-xl bg-deep p-6 sm:p-8">
+              <div>
+                <h2 className="font-display text-lg font-extrabold text-white">
+                  Not sure which service fits?
+                </h2>
+                <p className="mt-3 leading-relaxed text-on-deep">
+                  Tell us what you are building and we will suggest a starting point.
+                </p>
+              </div>
+              <Button href={bookCallHref} className="mt-6 self-start">
+                Book a call
+              </Button>
+            </li>
+          )}
+        </ul>
       </div>
 
       <CtaBand />

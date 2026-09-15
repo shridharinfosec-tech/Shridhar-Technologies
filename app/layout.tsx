@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Nunito_Sans, JetBrains_Mono } from "next/font/google";
-import TopBar from "@/components/layout/TopBar";
+import { Montserrat, Nunito_Sans } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import StickyMobileCta from "@/components/layout/StickyMobileCta";
+import Analytics from "@/components/layout/Analytics";
 import { siteConfig } from "@/data/siteConfig";
-import { organizationJsonLd } from "@/lib/jsonld";
+import { organizationJsonLd, professionalServiceJsonLd } from "@/lib/jsonld";
 import "./globals.css";
 
-// Design-system type stack (revamp phase 2): Sora for display/headings, Inter
-// for body, JetBrains Mono for eyebrows, labels and metadata. Sora carries the
-// hero headline (the LCP element on most pages), so it preloads; the mono is
-// off the critical path. next/font self-hosts all three and its size-adjusted
-// fallback keeps layout shift minimal on swap.
+// Type stack: Montserrat (700 and 800 only) for headings, labels and buttons,
+// Nunito Sans for body copy. Montserrat carries the hero headline (the LCP
+// element on most pages), so it preloads. next/font self-hosts both, and its
+// size-adjusted fallback keeps layout shift minimal on swap.
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["700", "800"],
   display: "swap",
 });
 
@@ -26,31 +26,23 @@ const nunitoSans = Nunito_Sans({
   preload: false,
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-  preload: false,
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.baseUrl),
   title: {
-    default: `${siteConfig.name} - ${siteConfig.tagline}`,
+    default: siteConfig.defaultTitle,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
-    title: siteConfig.name,
+    title: siteConfig.defaultTitle,
     description: siteConfig.description,
     url: siteConfig.baseUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
+    title: siteConfig.defaultTitle,
     description: siteConfig.description,
   },
 };
@@ -63,7 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${nunitoSans.variable} ${jetbrainsMono.variable}`}
+      className={`${montserrat.variable} ${nunitoSans.variable}`}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col bg-ink text-fog antialiased">
@@ -72,14 +64,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd(), professionalServiceJsonLd()]),
+          }}
         />
-        <TopBar />
         <Navbar />
         <main id="main-content" className="flex-1">
           {children}
         </main>
         <Footer />
+        <StickyMobileCta />
+        <Analytics />
       </body>
     </html>
   );

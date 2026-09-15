@@ -10,13 +10,25 @@ export const faqs: Faq[] = [
       "We build custom software across five areas: digital engineering (SaaS, app modernization, IoT), cloud (migration, DevOps, SRE), AI (ML engineering, GenAI, AI agents), application engineering (mobile, QA, integrations), and product engineering (MVPs, web and mobile apps, UI/UX). Most engagements combine two or three of these rather than a single service in isolation.",
   },
   {
+    question: "How do you use AI, and is my code and data safe?",
+    // [OWNER TO CONFIRM: tools and data policy] Name the AI tools used and
+    // confirm the data policy (for example, no training on client code).
+    answer:
+      "We use AI tools for scaffolding, tests and code review, and a named engineer reviews every change before it is merged. Before a project starts we agree in writing which tools may be used on your code and data, and we sign an NDA before detailed scoping if you need one.",
+  },
+  {
+    question: "How much does a project cost?",
+    // [OWNER TO CONFIRM] Add "from" prices for marketing sites and MVPs.
+    answer:
+      "It depends on scope, so we price after a short scoping call rather than guess. Marketing sites, MVPs and larger platforms are all quoted as fixed-price milestones, and you get the quote before any build work starts.",
+  },
+  {
     question: "How does a typical engagement start?",
     answer:
       "We start with a short discovery call to understand your goals, constraints, and timeline, then follow up with a scoping document that lays out approach, milestones, and cost before any code is written. Most clients move from first call to a signed scope within one to two weeks.",
   },
   {
-    question:
-      "What engagement models do you offer (fixed scope, time and materials, dedicated team)?",
+    question: "Which engagement models do you offer?",
     answer:
       "We offer fixed-scope engagements for well-defined projects with a clear spec, time-and-materials for work that will evolve as you learn, and dedicated teams for clients who need ongoing capacity embedded with their own product team. We'll recommend the model that fits your project during scoping, not before.",
   },
@@ -43,6 +55,6 @@ export const faqs: Faq[] = [
   {
     question: "Can you modernize or take over an existing application?",
     answer:
-      "Yes - application modernization and takeover of existing codebases is one of our core services. We start with a technical audit to assess code quality, architecture, and risk areas, then propose either an incremental modernization path or a rebuild, depending on what the audit finds.",
+      "Yes. Application modernization and takeover of existing codebases is one of our core services. We start with a technical audit to assess code quality, architecture, and risk areas, then propose either an incremental modernization path or a rebuild, depending on what the audit finds.",
   },
 ];
