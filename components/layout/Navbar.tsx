@@ -116,9 +116,9 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Button href={bookCallHref} className="hidden lg:inline-flex">
-              Book a call
-            </Button>
+            <div className="hidden lg:block">
+              <Button href={bookCallHref}>Book a call</Button>
+            </div>
 
             <button
               type="button"
