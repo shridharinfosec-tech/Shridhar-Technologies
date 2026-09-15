@@ -3,7 +3,6 @@ import { Montserrat, Nunito_Sans, JetBrains_Mono } from "next/font/google";
 import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ScrollReveal from "@/components/shared/ScrollReveal";
 import { siteConfig } from "@/data/siteConfig";
 import { organizationJsonLd } from "@/lib/jsonld";
 import "./globals.css";
@@ -80,7 +79,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <ScrollReveal />
         <Footer />
       </body>
     </html>

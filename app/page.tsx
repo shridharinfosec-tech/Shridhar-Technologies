@@ -42,19 +42,17 @@ export default function Home() {
       <SectionReveal as="section">
         <Testimonials />
       </SectionReveal>
-      <SectionReveal as="section">
-        <section id="faq" className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="justify-center">FAQ</Eyebrow>
-            <h2 className="font-display mt-4 text-3xl leading-tight font-extrabold text-snow sm:text-4xl">
-              Read most frequent questions
-            </h2>
-          </div>
-          <div className="mt-14">
-            <FaqAccordion />
-          </div>
-        </section>
-      </SectionReveal>
+      <section id="faq" className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow className="justify-center">FAQ</Eyebrow>
+          <h2 className="font-display mt-4 text-3xl leading-tight font-extrabold text-snow sm:text-4xl">
+            Read most frequent questions
+          </h2>
+        </div>
+        <div className="mt-14">
+          <FaqAccordion />
+        </div>
+      </section>
       <CtaBand />
     </>
   );

@@ -1,28 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
+import { useEffect, useRef } from "react";
 
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-export function useCountUp(target: number, duration = 1600) {
-  const ref = useRef<HTMLElement | null>(null);
-  // Start at the target so the server-rendered HTML (and no-JS / crawler
-  // views) show the real number, not "0". The client animates from zero.
-  const [value, setValue] = useState(target);
-  const reducedMotion = usePrefersReducedMotion();
+/**
+ * Count-up for a number that is already rendered with its final value.
+ *
+ * The server HTML (and crawlers, link previews, no-JS and slow phones) always
+ * shows the real number. The animation only runs when the element starts
+ * below the viewport and reduced motion is off: the number is reset to 0
+ * while it is still off screen, then counts up once it scrolls into view.
+ * It writes to the text node directly so the component never re-renders.
+ */
+export function useCountUp<T extends HTMLElement>(target: number, duration = 1600) {
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Already on screen (first paint, anchor jump, back navigation): keep the
+    // final value rather than flashing back to zero.
+    if (node.getBoundingClientRect().top < window.innerHeight) return;
 
-    if (reducedMotion) {
-      setValue(target);
-      return;
-    }
-
-    // Reset to zero while off screen, then count up when scrolled into view.
-    setValue(0);
+    node.textContent = "0";
+    let frame = 0;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -30,23 +33,23 @@ export function useCountUp(target: number, duration = 1600) {
         observer.disconnect();
 
         const start = performance.now();
-        let frame: number;
-
         const tick = (now: number) => {
           const progress = Math.min((now - start) / duration, 1);
-          setValue(Math.round(target * easeOutCubic(progress)));
+          node.textContent = String(Math.round(target * easeOutCubic(progress)));
           if (progress < 1) frame = requestAnimationFrame(tick);
         };
-
         frame = requestAnimationFrame(tick);
-        return () => cancelAnimationFrame(frame);
       },
       { threshold: 0.4 },
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
-  }, [target, duration, reducedMotion]);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      node.textContent = String(target);
+    };
+  }, [target, duration]);
 
-  return { ref, value };
+  return ref;
 }

@@ -2,44 +2,37 @@
 
 import Link from "@/components/shared/Link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import Logo from "@/components/shared/Logo";
 import Button from "@/components/shared/Button";
+import { ChevronDownIcon, MenuIcon } from "@/components/shared/Icons";
+import { mainNav } from "@/data/navigation";
+import { bookCallHref } from "@/data/siteConfig";
 import MegaMenu from "./MegaMenu";
 import MobileDrawer from "./MobileDrawer";
 import { cn } from "@/lib/cn";
 
-const navLinks = [
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-  { label: "Blogs", href: "/blogs" },
-];
+const navItemClass =
+  "rounded-sm px-3 py-2 text-sm font-bold text-snow transition-colors hover:text-cyber focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const megaMenuId = useId();
   const pathname = usePathname();
 
-  const openServices = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setServicesOpen(true);
-  };
-  const scheduleCloseServices = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
-  };
+  // Close both menus whenever the route changes (adjusting state during
+  // render rather than in an effect, so there is no extra paint).
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setServicesOpen(false);
+    setMobileOpen(false);
+  }
 
-  useEffect(
-    () => () => {
-      if (closeTimer.current) clearTimeout(closeTimer.current);
-    },
-    [],
-  );
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -47,11 +40,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setServicesOpen(false);
-    setMobileOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!servicesOpen) return;
@@ -74,91 +62,79 @@ export default function Navbar() {
   }, [servicesOpen]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-40 transition-colors duration-300 ease-out",
-        scrolled
-          ? "border-b border-line bg-ink/90 backdrop-blur-md"
-          : "border-b border-transparent bg-ink",
-      )}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Logo />
+    <>
+      {/* No backdrop-filter here: it would turn the header into the containing
+          block for fixed children. The drawer also renders outside <header>. */}
+      <header
+        className={cn(
+          "sticky top-0 z-40 border-b bg-ink transition-shadow duration-300 ease-out",
+          scrolled
+            ? "border-line shadow-[0_10px_30px_-20px_rgba(11,30,70,0.35)]"
+            : "border-transparent",
+        )}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 lg:px-8">
+          <Logo />
 
-        <nav
-          className="hidden flex-1 items-center justify-center gap-9 lg:flex"
-          ref={menuRef}
-        >
-          <Link
-            href="/"
-            onClick={(event) => {
-              if (pathname === "/") {
-                event.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }
-            }}
-            className="nav-underline text-sm font-bold text-snow transition-colors hover:text-cyber"
+          <nav
+            aria-label="Main"
+            className="hidden flex-1 items-center justify-center gap-1 lg:flex"
           >
-            Home
-          </Link>
-
-          <div
-            onMouseEnter={openServices}
-            onMouseLeave={scheduleCloseServices}
-          >
-            <Link
-              href="/services"
-              aria-expanded={servicesOpen}
-              aria-controls={megaMenuId}
-              onFocus={openServices}
-              className="flex items-center gap-1 text-sm font-bold text-snow transition-colors hover:text-cyber focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber"
-            >
-              Services
-              <span
-                aria-hidden
-                className={cn(
-                  "text-xs transition-transform duration-200 ease-out",
-                  servicesOpen && "rotate-180",
-                )}
+            <div ref={menuRef}>
+              <button
+                type="button"
+                aria-expanded={servicesOpen}
+                aria-controls={megaMenuId}
+                onClick={() => setServicesOpen((open) => !open)}
+                className={cn(navItemClass, "inline-flex items-center gap-1")}
               >
-                ▾
-              </span>
-            </Link>
-            {servicesOpen && <MegaMenu id={megaMenuId} />}
-          </div>
+                Services
+                <ChevronDownIcon
+                  className={cn(
+                    "h-4 w-4 transition-transform duration-200 ease-out",
+                    servicesOpen && "rotate-180",
+                  )}
+                />
+              </button>
+              {servicesOpen && <MegaMenu id={megaMenuId} />}
+            </div>
 
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="nav-underline text-sm font-bold text-snow transition-colors hover:text-cyber"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+            {mainNav.map((link) => {
+              const active =
+                pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(navItemClass, "nav-underline", active && "text-cyber")}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="flex items-center gap-3">
-          <div className="hidden lg:block">
-            <Button href="/contact" className="px-6 py-3 text-sm">
-              Get a Quote
+          <div className="flex items-center gap-3">
+            <Button href={bookCallHref} className="hidden lg:inline-flex">
+              Book a call
             </Button>
+
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-snow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber lg:hidden"
+            >
+              <MenuIcon className="h-6 w-6" />
+            </button>
           </div>
-
-          <button
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg text-snow lg:hidden"
-          >
-            <span aria-hidden className="text-2xl leading-none">
-              ☰
-            </span>
-          </button>
         </div>
-      </div>
+      </header>
 
-      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </header>
+      <MobileDrawer open={mobileOpen} onClose={closeMobile} />
+    </>
   );
 }

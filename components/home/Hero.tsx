@@ -1,223 +1,99 @@
-"use client";
-
-import { useCallback, useEffect, useState } from "react";
 import Button from "@/components/shared/Button";
 import Eyebrow from "@/components/shared/Eyebrow";
-import HeroTitle, { type TitleLine } from "@/components/home/HeroTitle";
-import { cn } from "@/lib/cn";
+import { CheckIcon, SparkIcon } from "@/components/shared/Icons";
+import { deliveryTimeline, hero, proofPoints } from "@/data/hero";
+import { bookCallHref } from "@/data/siteConfig";
 
-type Slide = {
-  image: string;
-  eyebrow: string;
-  lines: TitleLine[];
-  subtitle: string;
-  primary: { label: string; href: string };
-};
+function DeliveryTimelineCard() {
+  return (
+    <div className="rounded-xl border border-white/10 bg-deep-2/80 p-6 shadow-2xl lg:p-8">
+      <div className="flex items-center justify-between gap-4">
+        <p className="font-display text-sm font-bold text-white">
+          Example MVP timeline
+        </p>
+        <span className="rounded-full bg-electric/15 px-3 py-1 text-xs font-semibold text-electric">
+          7 weeks
+        </span>
+      </div>
 
-const slides: Slide[] = [
-  {
-    image: "/images/hero.jpg",
-    eyebrow: "Full-cycle software development",
-    lines: [
-      { words: ["Built", "to", "ship."] },
-      { words: ["Built", "to", "last."], className: "text-electric" },
-    ],
-    subtitle:
-      "We're a team of senior software engineers delivering SaaS platforms, cloud systems, AI products, and custom applications end to end - from first idea to production and the years after.",
-    primary: { label: "Get a Quote", href: "/contact" },
-  },
-  {
-    image: "/images/meeting.jpg",
-    eyebrow: "SaaS · Cloud · Artificial Intelligence",
-    lines: [
-      { words: ["End-to-end"] },
-      { words: ["engineering."], className: "text-electric" },
-    ],
-    subtitle:
-      "We design, build, and run the software our clients depend on - modern platforms engineered for scale, shipped by people who own the outcome.",
-    primary: { label: "Explore Services", href: "/services" },
-  },
-  {
-    image: "/images/code.jpg",
-    eyebrow: "Senior engineers, real outcomes",
-    lines: [
-      { words: ["Software", "that"] },
-      { words: ["actually", "works."], className: "text-electric" },
-    ],
-    subtitle:
-      "Delivered by senior engineers who stand behind their decisions, on a timeline and budget agreed upfront rather than discovered along the way.",
-    primary: { label: "See our work", href: "/portfolio" },
-  },
-];
-
-const AUTOPLAY_MS = 8000;
-const pad = (n: number) => String(n).padStart(2, "0");
+      <ol className="mt-6 space-y-5">
+        {deliveryTimeline.map((step, index) => (
+          <li key={step.stage} className="relative flex gap-4">
+            {index < deliveryTimeline.length - 1 && (
+              <span
+                aria-hidden
+                className="absolute top-8 bottom-[-1.25rem] left-[15px] w-px bg-white/15"
+              />
+            )}
+            <span className="font-display relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-electric/50 bg-deep text-xs font-bold text-electric">
+              {index + 1}
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <p className="font-display text-base font-bold text-white">
+                  {step.stage}
+                </p>
+                <p className="text-xs text-on-deep">{step.when}</p>
+                {step.aiAssisted ? (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-electric/10 px-2 py-0.5 text-xs font-semibold text-electric">
+                    <SparkIcon className="h-3 w-3" />
+                    AI-assisted
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center rounded-full bg-white/10 px-2 py-0.5 text-xs font-semibold text-white">
+                    Engineer-led
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 text-sm text-on-deep">{step.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 
 export default function Hero() {
-  const [index, setIndex] = useState(0);
-  const count = slides.length;
-
-  const go = useCallback(
-    (n: number) => setIndex(((n % count) + count) % count),
-    [count],
-  );
-
-  useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
-    const id = window.setInterval(
-      () => setIndex((i) => (i + 1) % count),
-      AUTOPLAY_MS,
-    );
-    return () => window.clearInterval(id);
-  }, [count, index]);
-
-  const slide = slides[index];
-
   return (
-    <section
-      className="relative overflow-hidden bg-deep"
-      aria-roledescription="carousel"
-      aria-label="Highlights"
-    >
-      {/* Slide background photos (crossfade) */}
-      {slides.map((s, i) => (
-        <div
-          key={s.image}
-          aria-hidden
-          className={cn(
-            "pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-out",
-            i === index ? "opacity-75" : "opacity-0",
-          )}
-          style={{ backgroundImage: `url('${s.image}')` }}
-        />
-      ))}
+    <section className="relative isolate overflow-hidden bg-deep">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-deep/75 via-deep/40 to-deep/15"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_30%,rgba(67,186,255,0.18),transparent_55%)]"
       />
 
-      {/* Angular geometric backdrop */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        {/* Full-bleed circuit + dot-grid texture */}
-        <svg className="absolute inset-0 h-full w-full text-white/[0.05]">
-          <defs>
-            <pattern id="hero-grid" width="46" height="46" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1.5" fill="currentColor" />
-              <path d="M2 2 H46 M2 2 V46" stroke="currentColor" strokeWidth="0.75" opacity="0.5" fill="none" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-grid)" />
-        </svg>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_28%,rgba(67,186,255,0.22),transparent_46%),radial-gradient(circle_at_92%_82%,rgba(70,97,197,0.26),transparent_42%),radial-gradient(circle_at_12%_18%,rgba(67,186,255,0.14),transparent_38%)]" />
-        <svg
-          className="absolute top-0 right-0 hidden h-full w-[62%] opacity-95 md:block"
-          viewBox="0 0 640 620"
-          fill="none"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <defs>
-            <linearGradient id="hero-tri" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#43baff" stopOpacity="0.9" />
-              <stop offset="1" stopColor="#43baff" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="hero-tri2" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#4661c5" stopOpacity="0.9" />
-              <stop offset="1" stopColor="#4661c5" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path d="M640 40 L640 600 L330 600 Z" fill="url(#hero-tri2)" opacity="0.18" />
-          <path d="M640 170 L640 600 L470 600 Z" fill="url(#hero-tri)" opacity="0.16" />
-        </svg>
-
-        {/* Readability scrim behind the text */}
-        <div className="absolute inset-0 bg-gradient-to-r from-deep/70 via-deep/15 to-transparent" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        <div className="max-w-3xl" key={index}>
-          <div className="hero-fade">
-            <Eyebrow onDeep>{slide.eyebrow}</Eyebrow>
-          </div>
-          <HeroTitle lines={slide.lines} />
-          <p
-            className="hero-fade mt-8 max-w-xl text-lg leading-relaxed text-on-deep"
-            style={{ animationDelay: "0.25s" }}
-          >
-            {slide.subtitle}
+      <div className="hero-fade mx-auto grid max-w-7xl gap-12 px-6 pt-10 pb-14 sm:pt-16 sm:pb-20 lg:grid-cols-12 lg:items-center lg:px-8 lg:py-24">
+        <div className="lg:col-span-7">
+          <Eyebrow onDeep>{hero.eyebrow}</Eyebrow>
+          <h1 className="font-display mt-5 text-4xl leading-[1.1] font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <span className="block">{hero.titleLines[0]}</span>
+            <span className="block text-electric">{hero.titleLines[1]}</span>
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-on-deep sm:mt-6 sm:text-lg">
+            {hero.subtitle}
           </p>
-          <div
-            className="hero-fade mt-10 flex flex-col gap-4 sm:flex-row"
-            style={{ animationDelay: "0.35s" }}
-          >
-            <Button href={slide.primary.href}>{slide.primary.label}</Button>
-            <Button href="/portfolio" variant="onDeep">
-              View Portfolio
+
+          <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:gap-4">
+            <Button href={bookCallHref}>{hero.primaryCta}</Button>
+            <Button href={hero.secondaryCta.href} variant="onDeep">
+              {hero.secondaryCta.label}
             </Button>
           </div>
+
+          <ul className="mt-7 grid gap-2 text-sm text-on-deep sm:flex sm:flex-wrap sm:gap-x-6">
+            {proofPoints.map((point) => (
+              <li key={point} className="flex items-center gap-2">
+                <CheckIcon className="h-4 w-4 shrink-0 text-electric" />
+                {point}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Slider controls */}
-        <div className="mt-14 flex items-center gap-5">
-          <button
-            type="button"
-            onClick={() => go(index - 1)}
-            aria-label="Previous slide"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-electric hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric"
-          >
-            <span aria-hidden className="text-lg leading-none">
-              ←
-            </span>
-          </button>
-
-          <p className="font-display text-sm font-bold tracking-widest text-white tabular-nums">
-            {pad(index + 1)}
-            <span className="mx-1 text-on-deep">/</span>
-            <span className="text-on-deep">{pad(count)}</span>
-          </p>
-
-          <button
-            type="button"
-            onClick={() => go(index + 1)}
-            aria-label="Next slide"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-electric hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric"
-          >
-            <span aria-hidden className="text-lg leading-none">
-              →
-            </span>
-          </button>
-
-          {/* Progress dots */}
-          <div className="ml-3 flex items-center gap-2">
-            {slides.map((s, i) => (
-              <button
-                key={s.image}
-                type="button"
-                onClick={() => go(i)}
-                aria-label={`Go to slide ${i + 1}`}
-                aria-current={i === index}
-                className={cn(
-                  "h-2 rounded-full transition-all duration-300",
-                  i === index
-                    ? "w-8 bg-electric"
-                    : "w-2 bg-white/30 hover:bg-white/60",
-                )}
-              />
-            ))}
-          </div>
+        <div className="hidden md:block lg:col-span-5">
+          <DeliveryTimelineCard />
         </div>
       </div>
-
-      {/* Angular bottom edge into the next section. */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-16 bg-ink"
-        style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 0)" }}
-      />
     </section>
   );
 }
